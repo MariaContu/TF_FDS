@@ -3,6 +3,9 @@ package com.example.sistemaVendas.Dominio;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+import com.example.sistemaVendas.Dominio.entidades.Pedido;
+import com.example.sistemaVendas.Dominio.entidades.Produto;
+
 public class Orcamento {
     private int id;
     private double sumPrecos;
