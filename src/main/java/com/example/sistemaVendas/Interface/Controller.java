@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.sistemaVendas.Aplicacao.ProdutosDisponiveis_UC;
-import com.example.sistemaVendas.Dominio.entidades.Produto;
+import com.example.sistemaVendas.Dominio.model.Produto;
 
 @RestController
 public class Controller {

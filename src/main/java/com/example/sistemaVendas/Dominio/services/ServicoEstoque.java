@@ -1,11 +1,12 @@
-package com.example.sistemaVendas.Dominio;
+package com.example.sistemaVendas.Dominio.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.sistemaVendas.Dominio.entidades.Produto;
+import com.example.sistemaVendas.Dominio.model.Produto;
+import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
 
 @Service
 public class ServicoEstoque{
