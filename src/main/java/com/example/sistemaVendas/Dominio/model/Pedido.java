@@ -14,9 +14,8 @@ public class Pedido {
     private long id;
 
     private long clienteId;
+
     private List<ItemPedido> listaProdutos;
-    
-    public Pedido(){}
 
     public Pedido(long id, long clienteId, List<ItemPedido> listaProdutos)   {
         this.id=id;
