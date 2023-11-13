@@ -20,6 +20,8 @@ public class Orcamento {
     private double imposto = 1.1; // imposto de 10%
     private double desconto = 0.95; //padrao para pedidos com mais de 5 itens
     private double valorFinal;
+    private boolean valido;
+    private boolean efetivado;
 
     public Orcamento(){}
 
@@ -64,7 +66,23 @@ public class Orcamento {
         return valorFinal;
     }
 
+    public boolean getValido()  {
+        return valido;
+    }
+
+    public boolean getEfetivado()  {
+        return efetivado;
+    }
+
     public void setValorFinal(double novoValor)   {
         this.valorFinal=novoValor;
+    }
+
+    public void setEfetivado(boolean efetivado) {
+        this.efetivado = efetivado;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
     }
 }

@@ -6,14 +6,14 @@ import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 
 public interface IRepItemEstoque {
     
-    List<ItemEstoque> listarItensEstoque();
+    List<ItemEstoque> allItemEstoque();
 
-    ItemEstoque obterItemEstoquePorId(long itemId);
+    ItemEstoque findItemEstoqueByProdutoID(long itemId);
 
-    void adicionarItemEstoque(ItemEstoque itemEstoque);
+    void addItemEstoque(ItemEstoque itemEstoque);
 
-    void atualizarItemEstoque(ItemEstoque itemEstoque);
+    void attQuantItemEstoque(ItemEstoque itemEstoque,int novaQuant);
 
-    void removerItemEstoque(long itemId);
+    void removeItemEstoque(ItemEstoque itemEstoque);
 
 }
