@@ -2,10 +2,13 @@ package com.example.sistemaVendas.Persistencias.repositories;
 
 import java.util.List;
 
-import com.example.sistemaVendas.Dominio.model.Orcamento;
-import com.example.sistemaVendas.Dominio.repositories.IRepOrcamentos;
+import org.springframework.stereotype.Repository;
 
-public class RepOrcamentosORM implements IRepOrcamentos{
+import com.example.sistemaVendas.Dominio.interface_repositories.IRepOrcamentos;
+import com.example.sistemaVendas.Dominio.model.Orcamento;
+
+@Repository
+public class RepOrcamentosMem implements IRepOrcamentos{
 
     @Override
     public List<Orcamento> listarOrcamentos() {

@@ -1,4 +1,4 @@
-package com.example.sistemaVendas.Dominio.repositories;
+package com.example.sistemaVendas.Dominio.interface_repositories;
 
 import java.util.List;
 

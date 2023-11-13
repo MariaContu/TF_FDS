@@ -2,10 +2,13 @@ package com.example.sistemaVendas.Persistencias.repositories;
 
 import java.util.List;
 
-import com.example.sistemaVendas.Dominio.model.ItemEstoque;
-import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
+import org.springframework.stereotype.Repository;
 
-public class RepItemEstoqueORM implements IRepItemEstoque{
+import com.example.sistemaVendas.Dominio.interface_repositories.IRepItemEstoque;
+import com.example.sistemaVendas.Dominio.model.ItemEstoque;
+
+@Repository
+public class RepItemEstoqueMem implements IRepItemEstoque{
 
     @Override
     public List<ItemEstoque> listarItensEstoque() {
