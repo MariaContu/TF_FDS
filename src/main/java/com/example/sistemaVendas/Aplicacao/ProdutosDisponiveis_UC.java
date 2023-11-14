@@ -14,7 +14,7 @@ public class ProdutosDisponiveis_UC {
     private ServicoEstoque servicoEstoque;
 
     public List<Produto> run(){
-        return servicoEstoque.produtosDisponiveis();
+        return servicoEstoque.listarTodosProdutos();
     }
 
 }
