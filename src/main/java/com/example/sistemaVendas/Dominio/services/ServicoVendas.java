@@ -9,11 +9,14 @@ import com.example.sistemaVendas.Dominio.model.ItemPedido;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ServicoVendas {
 
     private IRepOrcamentos repOrcamentos;
     private IRepPedido repPedido;
-
+    
     public ServicoVendas(IRepOrcamentos repOrcamentos, IRepPedido repPedido) {
         this.repOrcamentos = repOrcamentos;
         this.repPedido = repPedido;

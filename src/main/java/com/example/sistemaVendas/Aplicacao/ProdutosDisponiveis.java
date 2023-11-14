@@ -9,11 +9,11 @@ import com.example.sistemaVendas.Dominio.model.Produto;
 import com.example.sistemaVendas.Dominio.services.ServicoEstoque;
 
 @Component
-public class ProdutosDisponiveis_UC {
+public class ProdutosDisponiveis {
     @Autowired
     private ServicoEstoque servicoEstoque;
 
-    public List<Produto> run(){
+    public List<Produto> all(){
         return servicoEstoque.listarTodosProdutos();
     }
 

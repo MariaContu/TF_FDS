@@ -12,7 +12,6 @@ import com.example.sistemaVendas.Dominio.model.Galpao;
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 
 @Service
-
 public class ServicoEstoque {
 
     private IRepProdutos repProdutos;

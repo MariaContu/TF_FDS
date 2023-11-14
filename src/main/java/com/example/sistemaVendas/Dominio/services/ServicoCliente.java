@@ -1,9 +1,13 @@
 package com.example.sistemaVendas.Dominio.services;
 
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 import com.example.sistemaVendas.Dominio.model.Cliente;
 
+@Service
 public class ServicoCliente {
 
     private IRepCliente repCliente;
