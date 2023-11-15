@@ -17,4 +17,8 @@ public class ProdutosDisponiveis {
         return servicoEstoque.listarTodosProdutos();
     }
 
+    public Produto findByID(long id)   {
+        return servicoEstoque.encontrarProdutoPorId(id);
+    }
+
 }

@@ -43,8 +43,11 @@ public class RepProdutosORM implements IRepProdutos {
 
     @Override
     public Produto findById(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        for (Produto produto : produtos) {
+            if (id==produto.getCodigo()) {
+                return produto;
+            }
+        }
+        return null;
     }
-    
 }
