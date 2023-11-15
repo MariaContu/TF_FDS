@@ -3,9 +3,9 @@ Desenvolvimento de sistema de vendas
 
 ## Lista de etapas
 
-⬜ Análise usando DDD
+✅ Análise usando DDD
 
-⬜ Modelagem da solução segundo arquitetura CLEAN
+✅ Modelagem da solução segundo arquitetura CLEAN
 
 ⬜ Implementação do Back End
 
