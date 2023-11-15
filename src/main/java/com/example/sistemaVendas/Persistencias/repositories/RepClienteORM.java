@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.sistemaVendas.Dominio.model.Cliente;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
-import com.example.sistemaVendas.Dominio.model.Pedido;
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 
 @Repository
@@ -63,9 +62,30 @@ public class RepClienteORM implements IRepCliente{
     }
 
     @Override
-    public void calculaDescontoUltimosSeisMeses(Cliente cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calculaDescontoUltimosSeisMeses'");
+    public double calculaDescontoUltimosSeisMeses(Cliente cliente) {
+        if (cliente.getComprasUltimosSeisMeses()>10) {
+            return 0.25;
+        }
+        return 0;
+    }
+
+    @Override
+    public double descontoDeCliente(Cliente cliente) {
+        double descontoUltimosMeses= calculaDescontoUltimosSeisMeses(cliente);
+        double descontoValorMedio=0;
+
+        if (cliente.getValorMedio()>10000) {
+            descontoValorMedio=0.1;
+        }
+        double valorAMais = cliente.getValorMedio()-10000;
+        descontoValorMedio += 0.05 * (int)(valorAMais / 10000);
+
+        // Limita o desconto a 30%
+        descontoValorMedio = Math.min(descontoValorMedio, 0.3);
+
+        double maiorDesconto=Math.max(descontoValorMedio, descontoUltimosMeses);
+
+        return maiorDesconto;
     }
     
 }

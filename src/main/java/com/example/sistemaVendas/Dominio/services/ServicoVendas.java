@@ -1,10 +1,12 @@
 package com.example.sistemaVendas.Dominio.services;
 
+import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 import com.example.sistemaVendas.Dominio.repositories.IRepOrcamentos;
 import com.example.sistemaVendas.Dominio.repositories.IRepPedido;
 
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.model.Pedido;
+import com.example.sistemaVendas.Dominio.model.Cliente;
 import com.example.sistemaVendas.Dominio.model.ItemPedido;
 
 import java.util.List;
@@ -16,6 +18,7 @@ public class ServicoVendas {
 
     private IRepOrcamentos repOrcamentos;
     private IRepPedido repPedido;
+    private IRepCliente repCliente;
     
     public ServicoVendas(IRepOrcamentos repOrcamentos, IRepPedido repPedido) {
         this.repOrcamentos = repOrcamentos;
@@ -51,6 +54,10 @@ public class ServicoVendas {
     }
 
     public boolean verificaValidade(Orcamento orcamento)    {
-         return repOrcamentos.verificaValidade(orcamento);
+        return repOrcamentos.verificaValidade(orcamento);
+    }
+
+    public double descontoDeCliente(Cliente cliente)  {
+        return repCliente.descontoDeCliente(cliente);
     }
 }

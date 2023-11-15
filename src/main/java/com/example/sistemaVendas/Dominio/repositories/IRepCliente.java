@@ -10,6 +10,8 @@ public interface IRepCliente {
     List<Cliente> allClientes();
 
     void calculaValorMedio(Cliente cliente);
-    void calculaDescontoUltimosSeisMeses(Cliente cliente);
+    double calculaDescontoUltimosSeisMeses(Cliente cliente);
+
+    double descontoDeCliente(Cliente cliente);
 
 }

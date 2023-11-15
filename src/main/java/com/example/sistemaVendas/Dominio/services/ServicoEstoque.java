@@ -52,7 +52,4 @@ public class ServicoEstoque {
         repItemEstoque.removeItemEstoque(itemEstoque);
     }
 
-    public void addGalpao(Galpao galpao)    {
-        repGalpao.addGalpao(galpao);
-    }
 }
