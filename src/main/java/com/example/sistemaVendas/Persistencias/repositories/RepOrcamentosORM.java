@@ -27,5 +27,11 @@ public class RepOrcamentosORM implements IRepOrcamentos{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'attValido'");
     }
+
+    @Override
+    public boolean verificaValidade(Orcamento orcamento) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'verificaValidade'");
+    }
     
 }

@@ -9,7 +9,7 @@ public interface IRepCliente {
     Cliente findByName(String name);
     List<Cliente> allClientes();
 
-    void attValorMedio(Cliente cliente, double valorNovo);
-    void attComprasSeisMeses(Cliente cliente, int countMeses);
+    void calculaValorMedio(Cliente cliente);
+    void calculaDescontoUltimosSeisMeses(Cliente cliente);
 
 }

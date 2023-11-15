@@ -24,11 +24,10 @@ public class ServicoCliente {
         return repCliente.allClientes();
     }
 
-    public void atualizarValorMedio(Cliente cliente, double novoValor) {
-        repCliente.attValorMedio(cliente, novoValor);
+    public void calculaValorMedio(Cliente cliente)  {
+        repCliente.calculaValorMedio(cliente);
     }
-
-    public void atualizarComprasSeisMeses(Cliente cliente, int countMeses) {
-        repCliente.attComprasSeisMeses(cliente, countMeses);
+    public void calculaDescontoUltimosSeisMeses(Cliente cliente){
+        repCliente.calculaDescontoUltimosSeisMeses(cliente);
     }
 }

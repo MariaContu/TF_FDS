@@ -49,4 +49,8 @@ public class ServicoVendas {
     public void retirarProdutoDoPedido(long idPedido, ItemPedido itemRetirado) {
         repPedido.retirarProd(idPedido, itemRetirado);
     }
+
+    public boolean verificaValidade(Orcamento orcamento)    {
+         return repOrcamentos.verificaValidade(orcamento);
+    }
 }

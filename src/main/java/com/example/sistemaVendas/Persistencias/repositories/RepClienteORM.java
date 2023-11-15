@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.example.sistemaVendas.Dominio.model.Cliente;
+import com.example.sistemaVendas.Dominio.model.Orcamento;
+import com.example.sistemaVendas.Dominio.model.Pedido;
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 
 @Repository
@@ -40,15 +42,30 @@ public class RepClienteORM implements IRepCliente{
     }
 
     @Override
-    public void attValorMedio(Cliente cliente, double valorNovo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'attValorMedio'");
+    public void calculaValorMedio(Cliente cliente) {
+        if (!cliente.getOrcamentos().isEmpty() && cliente.getOrcamentos().size()>=3) {
+            List<Orcamento> ultimos3pedidos = cliente.getOrcamentos().subList(cliente.getOrcamentos().size() -3, cliente.getOrcamentos().size());
+        
+            double soma=0;
+            for (Orcamento p : ultimos3pedidos) {
+                soma+=p.getValorFinal();
+            }
+
+            cliente.setValorMedio(soma/3);
+        }
+        else {
+            double soma=0;
+            for (Orcamento o : cliente.getOrcamentos()) {
+                soma+=o.getValorFinal();
+            }
+            cliente.setValorMedio(soma/3);
+        }
     }
 
     @Override
-    public void attComprasSeisMeses(Cliente cliente, int countMeses) {
+    public void calculaDescontoUltimosSeisMeses(Cliente cliente) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'attComprasSeisMeses'");
+        throw new UnsupportedOperationException("Unimplemented method 'calculaDescontoUltimosSeisMeses'");
     }
     
 }

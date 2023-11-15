@@ -11,5 +11,7 @@ public interface IRepOrcamentos {
     
     void attEfetivado(Orcamento orcamento);
     void attValido(Orcamento orcamento);
+
+    boolean verificaValidade(Orcamento orcamento);
     
 }
