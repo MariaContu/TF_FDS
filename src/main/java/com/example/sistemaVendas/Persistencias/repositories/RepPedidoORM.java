@@ -21,7 +21,7 @@ public class RepPedidoORM implements IRepPedido {
 
     @Override
     public List<Pedido> all() {
-        return new ArrayList<>(pedidos);
+        return pedidos;
     }
 
     @Override
@@ -33,24 +33,27 @@ public class RepPedidoORM implements IRepPedido {
 
     @Override
     public void adicionarProd(long idPedido, ItemPedido novoItem) {
-        Pedido pedido = findPedidoById(idPedido);
+        Pedido pedido = encontrarPedidoPorId(idPedido);
         if (pedido != null) {
             pedido.getListaProdutos().add(novoItem);
+        } else {
+            System.out.println("Pedido não encontrado.");
         }
     }
 
     @Override
     public void retirarProd(long idPedido, ItemPedido itemRetirado) {
-        Pedido pedido = findPedidoById(idPedido);
+        Pedido pedido = encontrarPedidoPorId(idPedido);
         if (pedido != null) {
             pedido.getListaProdutos().remove(itemRetirado);
+        } else {
+            System.out.println("Pedido não encontrado.");
         }
     }
 
-    // Método auxiliar para encontrar um Pedido pelo ID
-    private Pedido findPedidoById(long id) {
+    private Pedido encontrarPedidoPorId(long idPedido) {
         return pedidos.stream()
-                .filter(pedido -> id == pedido.getId())
+                .filter(pedido -> pedido.getId() == idPedido)
                 .findFirst()
                 .orElse(null);
     }

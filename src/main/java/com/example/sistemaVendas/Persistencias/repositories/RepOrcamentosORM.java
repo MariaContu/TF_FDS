@@ -1,6 +1,6 @@
 package com.example.sistemaVendas.Persistencias.repositories;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -9,46 +9,45 @@ import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.repositories.IRepOrcamentos;
 
 @Repository
-public class RepOrcamentosORM implements IRepOrcamentos {
-
+public class RepOrcamentosORM implements IRepOrcamentos{
     private List<Orcamento> orcamentos;
 
-    public RepOrcamentosORM() {
-        orcamentos = new ArrayList<>();
+    public RepOrcamentosORM(){
+        orcamentos = new LinkedList<>();
     }
 
     @Override
     public List<Orcamento> all() {
-        return new ArrayList<>(orcamentos);
+        return orcamentos;
+    }
+    
+    @Override
+    public void addOrcamento(Orcamento o) {
+        orcamentos.add(o);
+    }
+    
+    @Override
+    public void attEfetivado(Orcamento orcamento, boolean efetivado) {
+        orcamento.setEfetivado(efetivado);
     }
 
     @Override
-    public void attEfetivado(Orcamento orcamento) {
-        Orcamento encontrado = findOrcamentoById(orcamento.getId());
-        if (encontrado != null) {
-            encontrado.setEfetivado(true);
-        }
-    }
-
-    @Override
-    public void attValido(Orcamento orcamento) {
-        Orcamento encontrado = findOrcamentoById(orcamento.getId());
-        if (encontrado != null) {
-            encontrado.setValido(true);
-        }
+    public void attValido(Orcamento orcamento, boolean valido) {
+        orcamento.setValido(valido);
     }
 
     @Override
     public boolean verificaValidade(Orcamento orcamento) {
-        Orcamento encontrado = findOrcamentoById(orcamento.getId());
-        return encontrado != null && encontrado.getValido();
+        if (orcamento.getNomeCliente() != null && orcamento.getPedido() != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    // Método auxiliar para encontrar um Orcamento pelo ID
-    public Orcamento findOrcamentoById(long id) {
-        return orcamentos.stream()
-                .filter(o -> id == o.getId())
-                .findFirst()
-                .orElse(null);
-    }
+    @Override
+    public void calculaValorFinal(Orcamento orcamento) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'calculaValorFinal'");
+    } 
 }

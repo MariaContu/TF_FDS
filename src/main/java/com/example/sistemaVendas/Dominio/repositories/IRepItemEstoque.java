@@ -12,8 +12,6 @@ public interface IRepItemEstoque {
 
     void addItemEstoque(ItemEstoque itemEstoque);
 
-    void attQuantItemEstoque(ItemEstoque itemEstoque,int novaQuant);
-
-    void removeItemEstoque(ItemEstoque itemEstoque);
+    void retiraQuantItem(ItemEstoque item, int quantDesejada);
 
 }
