@@ -47,5 +47,12 @@ public class ServicoEstoque {
         repItemEstoque.retiraQuantItem(itemEstoque,quantDesejada);
     }
 
+    public List<ItemEstoque> listAllProdutosInGalpao()  {
+        return repGalpao.listAllProdutos();
+    }
+
+    public ItemEstoque findById(long id)    {
+        return repGalpao.findById(id);
+    }
 
 }

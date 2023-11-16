@@ -27,6 +27,7 @@ public class Controller {
         return produtosDisponiveis.all();
     }
 
+    //api de teste
     @GetMapping("id={id}")
     @CrossOrigin("*")
     public Produto byId(@PathVariable long id) {
