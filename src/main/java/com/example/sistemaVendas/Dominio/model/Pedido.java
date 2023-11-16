@@ -31,9 +31,4 @@ public class Pedido {
     public void setListaProdutos(List<ItemPedido> listaProdutos) {
         this.listaProdutos = listaProdutos;
     }   
-<<<<<<< HEAD
 }
-=======
-
-}
->>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046

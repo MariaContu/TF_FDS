@@ -1,6 +1,5 @@
 package com.example.sistemaVendas.Aplicacao;
 
-<<<<<<< HEAD
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.model.Pedido;
 import com.example.sistemaVendas.Dominio.model.Produto;
@@ -23,8 +22,6 @@ public class ServicoRelatorio {
         this.servicoEstoque = servicoEstoque;
         this.relatorio = relatorio;
     }
-
-    // Métodos para adicionar dados ao relatório
 
     public void adicionarPedidoAoRelatorio(Pedido pedido) {
         relatorio.adicionarPedido(pedido);
@@ -77,8 +74,4 @@ public class ServicoRelatorio {
                 .mapToDouble(Orcamento::getValorFinal)
                 .sum();
     }
-=======
-public class ServicoRelatorio {
-    
->>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
 }

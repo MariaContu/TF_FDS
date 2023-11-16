@@ -1,6 +1,5 @@
 package com.example.sistemaVendas.Aplicacao;
 
-<<<<<<< HEAD
 import java.util.List;
 
 import com.example.sistemaVendas.Dominio.model.Orcamento;
@@ -54,8 +53,4 @@ public class Relatorio {
     public void removerProduto(Produto produto) {
         produtos.remove(produto);
     }
-=======
-public class Relatorio {
-    
->>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
 }

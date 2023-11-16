@@ -13,10 +13,6 @@ public class RepProdutosORM implements IRepProdutos {
 
     private List<Produto> produtos;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
     public RepProdutosORM(){
         produtos=new LinkedList<>();
         produtos.add(new Produto(1,"Café Espresso", 3.50));
@@ -32,19 +28,11 @@ public class RepProdutosORM implements IRepProdutos {
 
     }
 
-<<<<<<< HEAD
     @Override
     public void save(Produto novoProduto) {
         long novoCodigo = produtos.size() + 1;
         novoProduto.setCodigo(novoCodigo);
         produtos.add(novoProduto);
-=======
-
-    @Override
-    public void save(Produto p) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
->>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
     }
 
     @Override
