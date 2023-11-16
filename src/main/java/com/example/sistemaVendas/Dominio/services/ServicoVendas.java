@@ -76,4 +76,8 @@ public class ServicoVendas {
     public boolean verificaDisponibilidadeItens(List<ItemPedido> itensPedido)    {
         return repOrcamentos.verificaDisponibilidadeItens(itensPedido);
     }
+
+    public Orcamento findByIdOrcamento(long id)    {
+        return repOrcamentos.findByIdOrcamento(id);
+    }
 }

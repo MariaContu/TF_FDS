@@ -126,4 +126,14 @@ public class RepOrcamentosORM implements IRepOrcamentos{
         }
         return true;
     }
+
+    @Override
+    public Orcamento findByIdOrcamento(long id) {
+        for (Orcamento o : orcamentos) {
+            if (id==o.getId()) {
+                return o;
+            }
+        }
+        return null;
+    }
 }

@@ -14,7 +14,9 @@ public class SolicitarOrcamento {
     @Autowired
     private ServicoVendas servicoVendas;
 
-    public void solicitarOrcamento(int id, Date data, String nomeCliente, Pedido pedido)    {
-        servicoVendas.addOrcamento(new Orcamento(id,data,nomeCliente,pedido));
+    public Orcamento solicitarOrcamento(long id, Date data, String nomeCliente, Pedido pedido)    {
+        Orcamento novoOrcamento = new Orcamento(id,data,nomeCliente,pedido);
+        servicoVendas.addOrcamento(novoOrcamento);
+        return servicoVendas.findByIdOrcamento(id);
     }
 }
