@@ -2,6 +2,7 @@ package com.example.sistemaVendas.Dominio.repositories;
 
 import java.util.List;
 
+import com.example.sistemaVendas.Dominio.model.ItemPedido;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 
 
@@ -16,5 +17,5 @@ public interface IRepOrcamentos {
 
     void calculaCustoPedido(Orcamento orcamento);
     void calculaValorFinal(Orcamento orcamento);
-    boolean verificaDisponibilidadeItens(Orcamento orcamento);
+    boolean verificaDisponibilidadeItens(List<ItemPedido> itensPedido);
 }

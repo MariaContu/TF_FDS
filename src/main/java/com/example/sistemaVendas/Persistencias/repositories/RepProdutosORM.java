@@ -31,8 +31,7 @@ public class RepProdutosORM implements IRepProdutos {
 
     @Override
     public void save(Produto p) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        produtos.add(p);
     }
 
     @Override

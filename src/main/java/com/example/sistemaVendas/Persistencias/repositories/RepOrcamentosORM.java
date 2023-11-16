@@ -1,13 +1,18 @@
 package com.example.sistemaVendas.Persistencias.repositories;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 import com.example.sistemaVendas.Dominio.model.ItemPedido;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
+import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
+import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 import com.example.sistemaVendas.Dominio.repositories.IRepOrcamentos;
 import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
 
@@ -16,6 +21,8 @@ public class RepOrcamentosORM implements IRepOrcamentos{
     private List<Orcamento> orcamentos;
     private IRepProdutos repProdutos;
     private IRepCliente repCliente;
+    private IRepItemEstoque repItemEstoque;
+    private IRepGalpao repGalpao;
 
     public RepOrcamentosORM(){
         orcamentos = new LinkedList<>();
@@ -43,8 +50,25 @@ public class RepOrcamentosORM implements IRepOrcamentos{
 
     @Override
     public boolean verificaValidade(Orcamento orcamento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'verificaValidade'");
+        Date dataInicial = orcamento.getData();
+        Date dataFinal;
+        int diasValidade=21;
+
+        Calendar calendario = Calendar.getInstance();
+        calendario.setTime(dataInicial);
+        int mes=calendario.get(Calendar.MONTH);
+
+        //verifica se eh janeiro ou fevereiro
+        if (mes == Calendar.JANUARY || mes == Calendar.FEBRUARY) {
+            diasValidade = 35;
+        }
+
+        // Adiciona os dias de validade à data inicial para obter a data final
+        calendario.add(Calendar.DAY_OF_MONTH, diasValidade);
+        dataFinal = calendario.getTime();
+
+        // Compara a data atual com a data final
+        return new Date().before(dataFinal);
     }
 
     @Override
@@ -81,13 +105,25 @@ public class RepOrcamentosORM implements IRepOrcamentos{
         }
 
         //verifica disponibilidade de itens
-
+        if (verificaDisponibilidadeItens(orcamento.getPedido().getListaProdutos())) {
+            orcamento.setValorFinal(valorFinal);
+        }
+        else    {
+            throw new IllegalArgumentException("Produtos indisponiveis no estoque.");
+        }
     }
 
     @Override
-    public boolean verificaDisponibilidadeItens(Orcamento orcamento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'verificaDisponibilidadeItens'");
-    }
+    public boolean verificaDisponibilidadeItens(List<ItemPedido> itensPedido) {
+        for (ItemPedido item : itensPedido) {
+            ItemEstoque itemEstoque = repGalpao.findById(item.getItemId());
+            int quantDesejada = item.getItemQuant();
+            int quantEstoque = itemEstoque.getQuantAtual();
 
+            if (quantDesejada>quantEstoque) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -73,7 +73,7 @@ public class ServicoVendas {
         repOrcamentos.calculaValorFinal(orcamento);
     }
 
-    public boolean verificaDisponibilidadeItens(Orcamento orcamento)    {
-        return repOrcamentos.verificaDisponibilidadeItens(orcamento);
+    public boolean verificaDisponibilidadeItens(List<ItemPedido> itensPedido)    {
+        return repOrcamentos.verificaDisponibilidadeItens(itensPedido);
     }
 }
