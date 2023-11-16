@@ -1,5 +1,6 @@
 package com.example.sistemaVendas.Aplicacao;
 
+<<<<<<< HEAD
 import com.example.sistemaVendas.Dominio.model.Cliente;
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
@@ -90,4 +91,8 @@ public class GerarRelatorio {
             System.out.println("------------------------------");
         }
     }
+=======
+public class GerarRelatorio {
+    
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
 }

@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 import com.example.sistemaVendas.Dominio.model.Produto;
 import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
+<<<<<<< HEAD
+=======
+import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
+import com.example.sistemaVendas.Dominio.model.Galpao;
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 
 @Service
@@ -14,10 +19,19 @@ public class ServicoEstoque {
 
     private IRepProdutos repProdutos;
     private IRepItemEstoque repItemEstoque;
+<<<<<<< HEAD
 
     public ServicoEstoque(IRepProdutos repProdutos, IRepItemEstoque repItemEstoque) {
         this.repProdutos = repProdutos;
         this.repItemEstoque = repItemEstoque;
+=======
+    private IRepGalpao repGalpao;
+
+    public ServicoEstoque(IRepProdutos repProdutos, IRepItemEstoque repItemEstoque, IRepGalpao repGalpao) {
+        this.repProdutos = repProdutos;
+        this.repItemEstoque = repItemEstoque;
+        this.repGalpao = repGalpao;
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
     }
 
     public List<Produto> listarTodosProdutos() {
@@ -48,4 +62,10 @@ public class ServicoEstoque {
         repItemEstoque.removeItemEstoque(itemEstoque);
     }
 
+<<<<<<< HEAD
+=======
+    public void addGalpao(Galpao galpao)    {
+        repGalpao.addGalpao(galpao);
+    }
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
 }

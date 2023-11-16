@@ -15,12 +15,15 @@ public class Controller {
     @Autowired
     private ProdutosDisponiveis produtosDisponiveis;
 
+<<<<<<< HEAD
     @GetMapping("")
     @CrossOrigin("*")
     public String instrucoes() {
         return "---------------------------------------------------\n Para produtos disponíveis: /produtosDisponiveis \n Para solicitar orçamento de uma determinada lista de itens: /solicitaOrcamento/lista/{[]}";
   }
 
+=======
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
     @GetMapping("produtosDisponiveis")
     @CrossOrigin("*")
     public List<Produto> produtosDisponiveis() {

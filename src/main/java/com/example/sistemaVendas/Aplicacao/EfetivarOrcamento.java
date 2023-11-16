@@ -1,5 +1,6 @@
 package com.example.sistemaVendas.Aplicacao;
 
+<<<<<<< HEAD
 import com.example.sistemaVendas.Dominio.model.Cliente;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.repositories.IRepOrcamentos;
@@ -45,4 +46,8 @@ public class EfetivarOrcamento {
             System.out.println("Orcamento não encontrado, inválido ou já efetivado.");
         }
     }
+=======
+public class EfetivarOrcamento {
+    
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
 }

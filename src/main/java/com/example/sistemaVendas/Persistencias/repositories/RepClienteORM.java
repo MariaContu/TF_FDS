@@ -1,16 +1,23 @@
 package com.example.sistemaVendas.Persistencias.repositories;
 
+<<<<<<< HEAD
 import java.util.LinkedList;
+=======
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.example.sistemaVendas.Dominio.model.Cliente;
+<<<<<<< HEAD
 import com.example.sistemaVendas.Dominio.model.Orcamento;
+=======
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 
 @Repository
 public class RepClienteORM implements IRepCliente{
+<<<<<<< HEAD
     public List<Cliente> clientes;
 
     public RepClienteORM()  {
@@ -33,10 +40,18 @@ public class RepClienteORM implements IRepCliente{
             }
         }
         return null;
+=======
+
+    @Override
+    public Cliente findByName(String name) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
     }
 
     @Override
     public List<Cliente> allClientes() {
+<<<<<<< HEAD
         return clientes;
     }
 
@@ -86,6 +101,22 @@ public class RepClienteORM implements IRepCliente{
         double maiorDesconto=Math.max(descontoValorMedio, descontoUltimosMeses);
 
         return maiorDesconto;
+=======
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'allClientes'");
+    }
+
+    @Override
+    public void attValorMedio(Cliente cliente, double valorNovo) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'attValorMedio'");
+    }
+
+    @Override
+    public void attComprasSeisMeses(Cliente cliente, int countMeses) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'attComprasSeisMeses'");
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
     }
     
 }

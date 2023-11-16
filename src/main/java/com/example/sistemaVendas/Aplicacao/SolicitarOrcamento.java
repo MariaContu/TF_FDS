@@ -1,5 +1,6 @@
 package com.example.sistemaVendas.Aplicacao;
 
+<<<<<<< HEAD
 import com.example.sistemaVendas.Dominio.model.Cliente;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.model.Pedido;
@@ -40,4 +41,8 @@ public class SolicitarOrcamento {
     public double getCustoTotal() {
         return custoTotal;
     }
+=======
+public class SolicitarOrcamento {
+    
+>>>>>>> c1495eaf9b6ff7cc7ab4f1bcb470ca4945e7f046
 }
