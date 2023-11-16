@@ -1,6 +1,5 @@
 package com.example.sistemaVendas.Dominio.model;
 
-
 public class Produto {
 
     private long codigo;

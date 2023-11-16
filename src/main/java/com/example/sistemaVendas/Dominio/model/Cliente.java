@@ -52,5 +52,4 @@ public class Cliente {
     public void setOrcamentos(List<Orcamento> orcamentos)    {
         this.orcamentos=orcamentos;
     }
-
 }

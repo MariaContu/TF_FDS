@@ -31,6 +31,5 @@ public class Controller {
     @CrossOrigin("*")
     public Produto byId(@PathVariable long id) {
         return produtosDisponiveis.findByID(id);
-    }
-    
+    }   
 }

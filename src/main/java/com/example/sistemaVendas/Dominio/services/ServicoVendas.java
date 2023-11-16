@@ -29,12 +29,16 @@ public class ServicoVendas {
         return repOrcamentos.all();
     }
 
-    public void atualizarEfetivadoOrcamento(Orcamento orcamento) {
-        repOrcamentos.attEfetivado(orcamento);
+    public void addOrcamento(Orcamento o)   {
+        repOrcamentos.addOrcamento(o);
     }
 
-    public void atualizarValidoOrcamento(Orcamento orcamento) {
-        repOrcamentos.attValido(orcamento);
+    public void atualizarEfetivadoOrcamento(Orcamento orcamento, boolean efetivado) {
+        repOrcamentos.attEfetivado(orcamento, efetivado);
+    }
+
+    public void atualizarValidoOrcamento(Orcamento orcamento, boolean valido) {
+        repOrcamentos.attValido(orcamento, valido);
     }
 
     public List<Pedido> listarTodosPedidos() {
@@ -61,13 +65,15 @@ public class ServicoVendas {
         return repCliente.descontoDeCliente(cliente);
     }
 
-    public Cliente findClienteById(long clienteId) {
-        List<Cliente> clientes = repCliente.allClientes();
-        for (Cliente cliente : clientes) {
-            if (cliente.getId() == clienteId) {
-                return cliente;
-            }
-        }
-        return null;
+    public void calculaCustoPedido(Orcamento orcamento) {
+        repOrcamentos.calculaCustoPedido(orcamento);
+    }
+
+    public void calculaValorFinal(Orcamento orcamento) {
+        repOrcamentos.calculaValorFinal(orcamento);
+    }
+
+    public boolean verificaDisponibilidadeItens(Orcamento orcamento)    {
+        return repOrcamentos.verificaDisponibilidadeItens(orcamento);
     }
 }

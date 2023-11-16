@@ -22,11 +22,10 @@ public class SolicitarOrcamento {
     public Orcamento gerarOrcamento() {
         Date dataAtual = new Date();
         String nomeCliente = cliente.getName();
-
+        long id = 1;
         double custoPedido = calcularCustoTotal(listaPedidos) * 1.1;
-        double valorFinal = custoPedido * 0.95;
 
-        return new Orcamento(dataAtual.getTime(), dataAtual, nomeCliente, new Pedido(), custoPedido, valorFinal);
+        return new Orcamento(id, dataAtual, nomeCliente, null);
     }
 
     private double calcularCustoTotal(List<Pedido> pedidos) {

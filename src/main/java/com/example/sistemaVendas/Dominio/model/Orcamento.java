@@ -3,8 +3,8 @@ package com.example.sistemaVendas.Dominio.model;
 import java.util.Date;
 
 public class Orcamento {
+    
     private long id;
-
     private Date data;
     private String nomeCliente;
     private Pedido pedido;
@@ -17,13 +17,11 @@ public class Orcamento {
 
     public Orcamento(){}
 
-    public Orcamento(long id, Date data, String nomeCliente, Pedido pedido, double custoPedido, double valorFinal)  {
+    public Orcamento(long id, Date data, String nomeCliente, Pedido pedido)  {
         this.id=id;
         this.data=data;
         this.nomeCliente=nomeCliente;
         this.pedido=pedido;
-        this.custoPedido=custoPedido;
-        this.valorFinal=valorFinal;
     }
 
     public long getId() {
@@ -64,6 +62,10 @@ public class Orcamento {
 
     public boolean getEfetivado()  {
         return efetivado;
+    }
+
+    public void setCustoPedido(double custoPedido) {
+        this.custoPedido = custoPedido;
     }
 
     public void setValorFinal(double novoValor)   {

@@ -53,12 +53,18 @@ public class RepClienteORM implements IRepCliente{
             cliente.setValorMedio(soma/3);
         }
         else {
-            double soma=0;
-            for (Orcamento o : cliente.getOrcamentos()) {
-                soma+=o.getValorFinal();
+            if (cliente.getOrcamentos().isEmpty()) {
+                cliente.setValorMedio(0);
             }
-            cliente.setValorMedio(soma/3);
+            else    {
+                double soma=0;
+                for (Orcamento o : cliente.getOrcamentos()) {
+                    soma+=o.getValorFinal();
+                }
+                cliente.setValorMedio(soma/cliente.getOrcamentos().size());
+            }
         }
+        cliente.setValorMedio(0);
     }
 
     @Override
@@ -87,5 +93,4 @@ public class RepClienteORM implements IRepCliente{
 
         return maiorDesconto;
     }
-    
 }

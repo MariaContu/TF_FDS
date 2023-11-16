@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.sistemaVendas.Dominio.model.Produto;
 import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
+import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 
 @Service
@@ -14,10 +15,12 @@ public class ServicoEstoque {
 
     private IRepProdutos repProdutos;
     private IRepItemEstoque repItemEstoque;
+    private IRepGalpao repGalpao;
 
-    public ServicoEstoque(IRepProdutos repProdutos, IRepItemEstoque repItemEstoque) {
+    public ServicoEstoque(IRepProdutos repProdutos, IRepItemEstoque repItemEstoque, IRepGalpao repGalpao) {
         this.repProdutos = repProdutos;
         this.repItemEstoque = repItemEstoque;
+        this.repGalpao = repGalpao;
     }
 
     public List<Produto> listarTodosProdutos() {
@@ -40,12 +43,7 @@ public class ServicoEstoque {
         repItemEstoque.addItemEstoque(itemEstoque);
     }
 
-    public void atualizarQuantidadeItemEstoque(ItemEstoque itemEstoque, int novaQuant) {
-        repItemEstoque.attQuantItemEstoque(itemEstoque, novaQuant);
+    public void atualizarQuantidadeItemEstoque(ItemEstoque itemEstoque, int quantDesejada) {
+        repItemEstoque.retiraQuantItem(itemEstoque,quantDesejada);
     }
-
-    public void removerItemEstoque(ItemEstoque itemEstoque) {
-        repItemEstoque.removeItemEstoque(itemEstoque);
-    }
-
 }

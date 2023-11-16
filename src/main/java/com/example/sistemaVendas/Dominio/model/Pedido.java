@@ -3,8 +3,8 @@ package com.example.sistemaVendas.Dominio.model;
 import java.util.List;
 
 public class Pedido {
-    private long id;
 
+    private long id;
     private long clienteId;
     private List<ItemPedido> listaProdutos;
     

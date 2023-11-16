@@ -1,9 +1,8 @@
 package com.example.sistemaVendas.Dominio.model;
 
 public class ItemPedido {
-    
-    private long itemId;
 
+    private long itemId;
     private int itemQuant;
 
     public ItemPedido(){}

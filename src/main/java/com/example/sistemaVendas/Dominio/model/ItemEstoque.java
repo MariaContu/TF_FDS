@@ -3,7 +3,6 @@ package com.example.sistemaVendas.Dominio.model;
 public class ItemEstoque {
 
     private int id;
-    
     private long codigoProduto;
     private int quantMax;
     private int quantMin;
@@ -42,6 +41,4 @@ public class ItemEstoque {
     public void setQuantAtual(int quantAtual) {
         this.quantAtual=quantAtual;
     }
-
 }
-
