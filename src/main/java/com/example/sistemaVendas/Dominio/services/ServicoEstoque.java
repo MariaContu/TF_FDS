@@ -8,7 +8,6 @@ import com.example.sistemaVendas.Dominio.model.Produto;
 import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
 import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
-import com.example.sistemaVendas.Dominio.model.Galpao;
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 
 @Service

@@ -14,6 +14,7 @@ public interface IRepOrcamentos {
 
     boolean verificaValidade(Orcamento orcamento);
 
+    void calculaCustoPedido(Orcamento orcamento);
     void calculaValorFinal(Orcamento orcamento);
-    
+    boolean verificaDisponibilidadeItens(Orcamento orcamento);
 }

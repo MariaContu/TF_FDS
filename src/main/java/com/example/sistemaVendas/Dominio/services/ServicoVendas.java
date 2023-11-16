@@ -29,6 +29,10 @@ public class ServicoVendas {
         return repOrcamentos.all();
     }
 
+    public void addOrcamento(Orcamento o)   {
+        repOrcamentos.addOrcamento(o);
+    }
+
     public void atualizarEfetivadoOrcamento(Orcamento orcamento, boolean efetivado) {
         repOrcamentos.attEfetivado(orcamento, efetivado);
     }
@@ -59,5 +63,17 @@ public class ServicoVendas {
 
     public double descontoDeCliente(Cliente cliente)  {
         return repCliente.descontoDeCliente(cliente);
+    }
+
+    public void calculaCustoPedido(Orcamento orcamento) {
+        repOrcamentos.calculaCustoPedido(orcamento);
+    }
+
+    public void calculaValorFinal(Orcamento orcamento) {
+        repOrcamentos.calculaValorFinal(orcamento);
+    }
+
+    public boolean verificaDisponibilidadeItens(Orcamento orcamento)    {
+        return repOrcamentos.verificaDisponibilidadeItens(orcamento);
     }
 }
