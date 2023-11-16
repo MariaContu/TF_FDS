@@ -44,12 +44,9 @@ public class ServicoEstoque {
         repItemEstoque.addItemEstoque(itemEstoque);
     }
 
-    public void atualizarQuantidadeItemEstoque(ItemEstoque itemEstoque, int novaQuant) {
-        repItemEstoque.attQuantItemEstoque(itemEstoque, novaQuant);
+    public void atualizarQuantidadeItemEstoque(ItemEstoque itemEstoque, int quantDesejada) {
+        repItemEstoque.retiraQuantItem(itemEstoque,quantDesejada);
     }
 
-    public void removerItemEstoque(ItemEstoque itemEstoque) {
-        repItemEstoque.removeItemEstoque(itemEstoque);
-    }
 
 }

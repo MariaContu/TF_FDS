@@ -29,12 +29,12 @@ public class ServicoVendas {
         return repOrcamentos.all();
     }
 
-    public void atualizarEfetivadoOrcamento(Orcamento orcamento) {
-        repOrcamentos.attEfetivado(orcamento);
+    public void atualizarEfetivadoOrcamento(Orcamento orcamento, boolean efetivado) {
+        repOrcamentos.attEfetivado(orcamento, efetivado);
     }
 
-    public void atualizarValidoOrcamento(Orcamento orcamento) {
-        repOrcamentos.attValido(orcamento);
+    public void atualizarValidoOrcamento(Orcamento orcamento, boolean valido) {
+        repOrcamentos.attValido(orcamento, valido);
     }
 
     public List<Pedido> listarTodosPedidos() {

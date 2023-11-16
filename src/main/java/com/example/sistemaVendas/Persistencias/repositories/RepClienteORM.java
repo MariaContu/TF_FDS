@@ -11,7 +11,7 @@ import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 
 @Repository
 public class RepClienteORM implements IRepCliente{
-    public List<Cliente> clientes;
+    private List<Cliente> clientes;
 
     public RepClienteORM()  {
         clientes = new LinkedList<>();

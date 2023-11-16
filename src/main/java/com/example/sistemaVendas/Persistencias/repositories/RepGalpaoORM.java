@@ -5,9 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.sistemaVendas.Dominio.model.Galpao;
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
-import com.example.sistemaVendas.Dominio.model.Produto;
 import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
 
 @Repository

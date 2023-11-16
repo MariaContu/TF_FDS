@@ -26,7 +26,6 @@ public class RepProdutosORM implements IRepProdutos {
         produtos.add(new Produto(8, "Tiramissu", 10.00));
         produtos.add(new Produto(9, "Bolo de Cenoura com Chocolate", 6.50));
         produtos.add(new Produto(10, "Cupcake de Baunilha com Brigadeiro", 5.00));
-
     }
 
 
