@@ -12,28 +12,38 @@ import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 
 @Repository
 public class RepGalpaoORM implements IRepGalpao {
-    private List<ItemEstoque> itens;
+    private List<ItemEstoque> itensEstoque;
     @Autowired
     private IRepItemEstoque repItemEstoque;
 
     public RepGalpaoORM()  {
-        itens = new LinkedList<>();
+        itensEstoque = new LinkedList<>();
+        itensEstoque.add(new ItemEstoque(1,1,200,20,150));
+        itensEstoque.add(new ItemEstoque(2,2,200,20,150));
+        itensEstoque.add(new ItemEstoque(3,3,200,20,150));
+        itensEstoque.add(new ItemEstoque(4,4,200,20,150));
+        itensEstoque.add(new ItemEstoque(5,5,200,20,150));
+        itensEstoque.add(new ItemEstoque(6,6,200,20,150));
+        itensEstoque.add(new ItemEstoque(7,7,200,20,150));
+        itensEstoque.add(new ItemEstoque(8,8,200,20,150));
+        itensEstoque.add(new ItemEstoque(9,9,200,20,150));
+        itensEstoque.add(new ItemEstoque(10,10,200,20,150));
     }
 
     @Autowired
     public void init(IRepItemEstoque repItemEstoque) {
         this.repItemEstoque = repItemEstoque;
-        itens = repItemEstoque.allItemEstoque();
+        itensEstoque = repItemEstoque.allItemEstoque();
     }
 
     @Override
     public List<ItemEstoque> listAllProdutos() {
-        return itens;
+        return itensEstoque;
     }
 
     @Override
     public ItemEstoque findById(long id) {
-        for (ItemEstoque i : itens) {
+        for (ItemEstoque i : itensEstoque) {
             if (id==i.getCodigoProduto()) {
                 return i;
             }

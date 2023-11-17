@@ -27,11 +27,11 @@ public class EfetivarOrcamento {
                 List<ItemPedido> lista = o.getPedido().getListaProdutos();
 
                 //se verificar e os itens estiverem disponiveis, vamos retirar do estoque as quantidades
-                //TODO logica itens estoque
                 for (ItemPedido i : lista) {
                     ItemEstoque itemEstoque = servicoEstoque.encontrarItemEstoquePorProdutoID(i.getItemId());
                     servicoEstoque.retiraQuantItem(itemEstoque, i.getItemQuant());
                 }
+                
                 //entao marcamos como efetivado = true
                 servicoVendas.atualizarEfetivadoOrcamento(o, true);
             }

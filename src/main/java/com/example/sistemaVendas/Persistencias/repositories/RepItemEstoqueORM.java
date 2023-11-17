@@ -24,6 +24,7 @@ public class RepItemEstoqueORM implements IRepItemEstoque{
         itensEstoque.add(new ItemEstoque(8,8,200,20,150));
         itensEstoque.add(new ItemEstoque(9,9,200,20,150));
         itensEstoque.add(new ItemEstoque(10,10,200,20,150));
+        itensEstoque.add(new ItemEstoque(11,11,200,20,150));
     }
 
     @Override

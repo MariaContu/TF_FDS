@@ -128,9 +128,10 @@ public class RepOrcamentosORM implements IRepOrcamentos{
     @Override
     public boolean verificaDisponibilidadeItens(List<ItemPedido> itensPedido) {
         for (ItemPedido item : itensPedido) {
-            ItemEstoque itemEstoque = repGalpao.findById(item.getItemId());
+            ItemEstoque itemEstoque = repItemEstoque.findItemEstoqueByProdutoID(item.getItemId());
             if (itemEstoque == null || itemEstoque.getQuantAtual() < item.getItemQuant()) {
-                // Se itemEstoque for null ou a quantidade atual for menor que a quantidade desejada, retorne falso.
+                // Log para identificar qual item não tem estoque suficiente
+                System.out.println("Não há estoque suficiente para o item com ID: " + item.getItemId());
                 return false;
             }
         }
