@@ -3,18 +3,14 @@ package com.example.sistemaVendas.Persistencias.repositories;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
-import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 
 @Repository
 public class RepGalpaoORM implements IRepGalpao {
     private List<ItemEstoque> itensEstoque;
-    @Autowired
-    private IRepItemEstoque repItemEstoque;
 
     public RepGalpaoORM()  {
         itensEstoque = new LinkedList<>();
@@ -28,12 +24,6 @@ public class RepGalpaoORM implements IRepGalpao {
         itensEstoque.add(new ItemEstoque(8,8,200,20,150));
         itensEstoque.add(new ItemEstoque(9,9,200,20,150));
         itensEstoque.add(new ItemEstoque(10,10,200,20,150));
-    }
-
-    @Autowired
-    public void init(IRepItemEstoque repItemEstoque) {
-        this.repItemEstoque = repItemEstoque;
-        itensEstoque = repItemEstoque.allItemEstoque();
     }
 
     @Override

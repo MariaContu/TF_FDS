@@ -14,7 +14,6 @@ import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 import com.example.sistemaVendas.Dominio.model.ItemPedido;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
-import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
 import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 import com.example.sistemaVendas.Dominio.repositories.IRepOrcamentos;
 import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
@@ -28,8 +27,7 @@ public class RepOrcamentosORM implements IRepOrcamentos{
     private IRepCliente repCliente;
     @Autowired
     private IRepItemEstoque repItemEstoque;
-    @Autowired
-    private IRepGalpao repGalpao;
+
 
     public RepOrcamentosORM(){
         orcamentos = new LinkedList<>();

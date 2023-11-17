@@ -10,4 +10,9 @@ class SistemaVendasApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void testaCustoDoPedido()	{
+		
+	}
+
 }
