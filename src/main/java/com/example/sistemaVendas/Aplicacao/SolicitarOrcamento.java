@@ -16,6 +16,8 @@ public class SolicitarOrcamento {
 
     public Orcamento solicitarOrcamento(long id, Date data, String nomeCliente, Pedido pedido)    {
         Orcamento novoOrcamento = new Orcamento(id,data,nomeCliente,pedido);
+        servicoVendas.calculaCustoPedido(novoOrcamento);
+        //servicoVendas.calculaValorFinal(novoOrcamento);
         servicoVendas.addOrcamento(novoOrcamento);
         return servicoVendas.findByIdOrcamento(id);
     }

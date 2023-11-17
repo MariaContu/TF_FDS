@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
@@ -19,9 +20,13 @@ import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
 @Repository
 public class RepOrcamentosORM implements IRepOrcamentos{
     private List<Orcamento> orcamentos;
+    @Autowired
     private IRepProdutos repProdutos;
+    @Autowired
     private IRepCliente repCliente;
+    @Autowired
     private IRepItemEstoque repItemEstoque;
+    @Autowired
     private IRepGalpao repGalpao;
 
     public RepOrcamentosORM(){

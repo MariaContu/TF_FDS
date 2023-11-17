@@ -1,4 +1,4 @@
-package com.example.sistemaVendas.Interface;
+package com.example.sistemaVendas.Dominio.Interface;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ import com.example.sistemaVendas.Dominio.model.Produto;
 public class Controller {
     @Autowired
     private ProdutosDisponiveis produtosDisponiveis;
+    @Autowired
     private SolicitarOrcamento solicitaOrcamento;
 
     @GetMapping("")
@@ -39,7 +41,7 @@ public class Controller {
         return produtosDisponiveis.findByID(id);
     }
 
-    @GetMapping("solicitarOrcamento")
+    @PostMapping("solicitarOrcamento")
     @CrossOrigin("*")
     public ResponseEntity<Orcamento> solicitaOrcamento(@RequestBody Orcamento novoOrcamento)    {
         Orcamento orcamento = solicitaOrcamento.solicitarOrcamento(novoOrcamento.getId(),novoOrcamento.getData(),novoOrcamento.getNomeCliente(),novoOrcamento.getPedido());
