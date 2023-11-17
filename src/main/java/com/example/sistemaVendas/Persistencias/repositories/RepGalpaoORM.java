@@ -18,7 +18,12 @@ public class RepGalpaoORM implements IRepGalpao {
 
     public RepGalpaoORM()  {
         itens = new LinkedList<>();
-        itens=repItemEstoque.allItemEstoque();
+    }
+
+    @Autowired
+    public void init(IRepItemEstoque repItemEstoque) {
+        this.repItemEstoque = repItemEstoque;
+        itens = repItemEstoque.allItemEstoque();
     }
 
     @Override

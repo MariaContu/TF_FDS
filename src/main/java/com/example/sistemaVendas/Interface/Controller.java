@@ -54,7 +54,7 @@ public class Controller {
         return ResponseEntity.ok(orcamento);
     }
 
-    @PatchMapping("efetivarOrcamento/id={id}/data aaaa/mm/dd={data}")
+    @PostMapping("efetivarOrcamento/{id}/{data}")
     @CrossOrigin("*")
     public ResponseEntity<Orcamento> efetivaOrcamento(@PathVariable("id") long idOrcamento, @PathVariable("data") @DateTimeFormat(pattern = "yyyy/MM/dd") Date dataEfetivacao) {
         Orcamento orcamento = efetivaOrcamento.efetivarOrcamento(idOrcamento, dataEfetivacao);
