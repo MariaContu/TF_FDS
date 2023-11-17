@@ -13,12 +13,11 @@ public class ProdutosDisponiveis {
     @Autowired
     private ServicoEstoque servicoEstoque;
 
-    @Autowired
-    public List<Produto> all() {
+    public List<Produto> all(){
         return servicoEstoque.listarTodosProdutos();
     }
 
-    public Produto findByID(long id) {
+    public Produto findByID(long id)   {
         return servicoEstoque.encontrarProdutoPorId(id);
     }
 }

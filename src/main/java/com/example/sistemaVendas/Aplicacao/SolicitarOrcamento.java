@@ -1,42 +1,24 @@
 package com.example.sistemaVendas.Aplicacao;
 
-import com.example.sistemaVendas.Dominio.model.Cliente;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.model.Pedido;
+import com.example.sistemaVendas.Dominio.services.ServicoVendas;
 
-import java.util.Date;
-import java.util.List;
-
+@Component
 public class SolicitarOrcamento {
+    @Autowired
+    private ServicoVendas servicoVendas;
 
-    private Cliente cliente;
-    private List<Pedido> listaPedidos;
-    private double custoTotal;
-
-    public SolicitarOrcamento(Cliente cliente, List<Pedido> listaPedidos) {
-        this.cliente = cliente;
-        this.listaPedidos = listaPedidos;
-        this.custoTotal = calcularCustoTotal(listaPedidos);
-    }
-
-    public Orcamento gerarOrcamento() {
-        Date dataAtual = new Date();
-        String nomeCliente = cliente.getName();
-        long id = 1;
-        double custoPedido = calcularCustoTotal(listaPedidos) * 1.1;
-
-        return new Orcamento(id, dataAtual, nomeCliente, null);
-    }
-
-    private double calcularCustoTotal(List<Pedido> pedidos) {
-        return pedidos.stream()
-                .mapToDouble(pedido -> pedido.getListaProdutos().stream()
-                        .mapToDouble(itemPedido -> itemPedido.getItemQuant() * itemPedido.getItemId())
-                        .sum())
-                .sum();
-    }
-
-    public double getCustoTotal() {
-        return custoTotal;
+    public Orcamento solicitarOrcamento(long id, Date data, String nomeCliente, Pedido pedido)    {
+        Orcamento novoOrcamento = new Orcamento(id,data,nomeCliente,pedido);
+        servicoVendas.calculaCustoPedido(novoOrcamento);
+        //servicoVendas.calculaValorFinal(novoOrcamento);
+        servicoVendas.addOrcamento(novoOrcamento);
+        return servicoVendas.findByIdOrcamento(id);
     }
 }

@@ -1,5 +1,6 @@
-package com.example.sistemaVendas.Aplicacao;
+package com.example.sistemaVendas.Aplicacao.services;
 
+import com.example.sistemaVendas.Aplicacao.model.Relatorio;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.model.Pedido;
 import com.example.sistemaVendas.Dominio.model.Produto;

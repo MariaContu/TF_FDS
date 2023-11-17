@@ -13,6 +13,7 @@ public class RepProdutosORM implements IRepProdutos {
 
     private List<Produto> produtos;
 
+
     public RepProdutosORM(){
         produtos=new LinkedList<>();
         produtos.add(new Produto(1,"Café Espresso", 3.50));
@@ -25,14 +26,12 @@ public class RepProdutosORM implements IRepProdutos {
         produtos.add(new Produto(8, "Tiramissu", 10.00));
         produtos.add(new Produto(9, "Bolo de Cenoura com Chocolate", 6.50));
         produtos.add(new Produto(10, "Cupcake de Baunilha com Brigadeiro", 5.00));
-
     }
 
+
     @Override
-    public void save(Produto novoProduto) {
-        long novoCodigo = produtos.size() + 1;
-        novoProduto.setCodigo(novoCodigo);
-        produtos.add(novoProduto);
+    public void save(Produto p) {
+        produtos.add(p);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.sistemaVendas.Aplicacao;
+package com.example.sistemaVendas.Aplicacao.model;
 
 import java.util.List;
 

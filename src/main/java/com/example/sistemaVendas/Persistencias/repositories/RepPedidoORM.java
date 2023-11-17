@@ -1,8 +1,7 @@
 package com.example.sistemaVendas.Persistencias.repositories;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,12 +10,11 @@ import com.example.sistemaVendas.Dominio.model.Pedido;
 import com.example.sistemaVendas.Dominio.repositories.IRepPedido;
 
 @Repository
-public class RepPedidoORM implements IRepPedido {
-
+public class RepPedidoORM implements IRepPedido{
     private List<Pedido> pedidos;
 
-    public RepPedidoORM() {
-        pedidos = new ArrayList<>();
+    public RepPedidoORM()   {
+        pedidos=new LinkedList<>();
     }
 
     @Override
@@ -26,35 +24,40 @@ public class RepPedidoORM implements IRepPedido {
 
     @Override
     public List<Pedido> pedidosPorCliente(long clienteID) {
-        return pedidos.stream()
-                .filter(pedido -> pedido.getClienteId() == clienteID)
-                .collect(Collectors.toList());
+        List<Pedido> pedidosCliente = new LinkedList<>();
+
+        for (Pedido pedido : pedidos) {
+            if (clienteID == pedido.getClienteId()) {
+                pedidosCliente.add(pedido);
+            }
+        }
+
+        return pedidosCliente;
     }
 
     @Override
     public void adicionarProd(long idPedido, ItemPedido novoItem) {
-        Pedido pedido = encontrarPedidoPorId(idPedido);
-        if (pedido != null) {
-            pedido.getListaProdutos().add(novoItem);
-        } else {
-            System.out.println("Pedido não encontrado.");
+    
+        for (Pedido p : pedidos) {
+            if (idPedido==p.getId()) {
+                //dentro do pedido
+                List<ItemPedido> listaPedido=p.getListaProdutos();
+                listaPedido.add(novoItem);
+                p.setListaProdutos(listaPedido);
+            }
         }
     }
 
     @Override
     public void retirarProd(long idPedido, ItemPedido itemRetirado) {
-        Pedido pedido = encontrarPedidoPorId(idPedido);
-        if (pedido != null) {
-            pedido.getListaProdutos().remove(itemRetirado);
-        } else {
-            System.out.println("Pedido não encontrado.");
+        for (Pedido p : pedidos) {
+            if (idPedido==p.getId()) {
+                //dentro do pedido
+                List<ItemPedido> listaPedido=p.getListaProdutos();
+                listaPedido.remove(itemRetirado);
+                p.setListaProdutos(listaPedido);
+            }
         }
     }
-
-    private Pedido encontrarPedidoPorId(long idPedido) {
-        return pedidos.stream()
-                .filter(pedido -> pedido.getId() == idPedido)
-                .findFirst()
-                .orElse(null);
-    }
+    
 }
