@@ -24,7 +24,6 @@ public class EfetivarOrcamento {
         if (servicoVendas.verificaValidade(o)) {
             //se for valido verificamos se os itens estao disponiveis
             if (servicoVendas.verificaDisponibilidadeItens(o.getPedido().getListaProdutos())) {
-
                 List<ItemPedido> lista = o.getPedido().getListaProdutos();
 
                 //se verificar e os itens estiverem disponiveis, vamos retirar do estoque as quantidades
@@ -34,9 +33,10 @@ public class EfetivarOrcamento {
                     servicoEstoque.retiraQuantItem(itemEstoque, i.getItemQuant());
                 }
                 //entao marcamos como efetivado = true
-                o.setEfetivado(true);
+                servicoVendas.atualizarEfetivadoOrcamento(o, true);
             }
         }
+        else servicoVendas.atualizarValidoOrcamento(o,false);
         //nao passou nas condicoes = retorna orcamento com efetivado false
         return o;
     }

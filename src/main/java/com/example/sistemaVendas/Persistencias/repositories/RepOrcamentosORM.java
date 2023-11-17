@@ -129,10 +129,8 @@ public class RepOrcamentosORM implements IRepOrcamentos{
     public boolean verificaDisponibilidadeItens(List<ItemPedido> itensPedido) {
         for (ItemPedido item : itensPedido) {
             ItemEstoque itemEstoque = repGalpao.findById(item.getItemId());
-            int quantDesejada = item.getItemQuant();
-            int quantEstoque = itemEstoque.getQuantAtual();
-
-            if (quantDesejada>quantEstoque) {
+            if (itemEstoque == null || itemEstoque.getQuantAtual() < item.getItemQuant()) {
+                // Se itemEstoque for null ou a quantidade atual for menor que a quantidade desejada, retorne falso.
                 return false;
             }
         }

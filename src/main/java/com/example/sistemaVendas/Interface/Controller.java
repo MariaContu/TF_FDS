@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,10 +56,20 @@ public class Controller {
         return ResponseEntity.ok(orcamento);
     }
 
-    @PostMapping("efetivarOrcamento/{id}/{data}")
+    @PutMapping("efetivarOrcamento/id={id}")
     @CrossOrigin("*")
-    public ResponseEntity<Orcamento> efetivaOrcamento(@PathVariable("id") long idOrcamento, @PathVariable("data") @DateTimeFormat(pattern = "yyyy/MM/dd") Date dataEfetivacao) {
-        Orcamento orcamento = efetivaOrcamento.efetivarOrcamento(idOrcamento, dataEfetivacao);
-        return ResponseEntity.ok(orcamento);
+    public ResponseEntity<Orcamento> efetivarOrcamento(@PathVariable("id") long idOrcamento) {
+
+        Date dataAtual = new Date();
+        Orcamento orcamento = efetivaOrcamento.efetivarOrcamento(idOrcamento, dataAtual);
+        if (orcamento.getEfetivado()) {
+            return ResponseEntity.ok(orcamento);
+        } else {
+            // Se o orçamento não foi efetivado, escolha um status HTTP apropriado
+            // Aqui estou usando 409 Conflict, mas você pode escolher outro status que faça sentido
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(orcamento);
+        }
     }
+
+    
 }
