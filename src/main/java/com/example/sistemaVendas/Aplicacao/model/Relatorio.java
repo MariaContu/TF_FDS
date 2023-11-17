@@ -2,55 +2,116 @@ package com.example.sistemaVendas.Aplicacao.model;
 
 import java.util.List;
 
+import com.example.sistemaVendas.Dominio.model.Cliente;
+import com.example.sistemaVendas.Dominio.model.Galpao;
+import com.example.sistemaVendas.Dominio.model.ItemEstoque;
+import com.example.sistemaVendas.Dominio.model.ItemPedido;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.model.Pedido;
 import com.example.sistemaVendas.Dominio.model.Produto;
 
 public class Relatorio {
 
+    private List<Cliente> clientes;
+    private List<Galpao> galpoes;
+    private List<ItemEstoque> itensEstoque;
+    private List<ItemPedido> itensPedidos;
     private List<Orcamento> orcamentos;
     private List<Pedido> pedidos;
     private List<Produto> produtos;
+    private String conteudo;
 
-    public Relatorio(List<Orcamento> orcamentos, List<Pedido> pedidos, List<Produto> produtos) {
-        this.orcamentos = orcamentos;
-        this.pedidos = pedidos;
-        this.produtos = produtos;
+    public Relatorio(){}
+    
+    public Relatorio(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public List<Galpao> getGalpoes() {
+        return galpoes;
+    }
+
+    public void setGalpoes(List<Galpao> galpoes) {
+        this.galpoes = galpoes;
+    }
+
+    public List<ItemEstoque> getItensEstoque() {
+        return itensEstoque;
+    }
+
+    public void setItensEstoque(List<ItemEstoque> itensEstoque) {
+        this.itensEstoque = itensEstoque;
+    }
+
+    public List<ItemPedido> getItensPedidos() {
+        return itensPedidos;
+    }
+
+    public void setItensPedidos(List<ItemPedido> itensPedidos) {
+        this.itensPedidos = itensPedidos;
     }
 
     public List<Orcamento> getOrcamentos() {
         return orcamentos;
     }
 
+    public void setOrcamentos(List<Orcamento> orcamentos) {
+        this.orcamentos = orcamentos;
+    }
+
     public List<Pedido> getPedidos() {
         return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     public List<Produto> getProdutos() {
         return produtos;
     }
 
-    public void adicionarPedido(Pedido pedido) {
-        pedidos.add(pedido);
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
-    public void adicionarOrcamento(Orcamento orcamento) {
-        orcamentos.add(orcamento);
+    public List<Cliente> getListaClientes() {
+        return clientes;
     }
 
-    public void adicionarProduto(Produto produto) {
-        produtos.add(produto);
+    public List<Galpao> getListaGalpoes() {
+        return galpoes;
     }
 
-    public void removerPedido(Pedido pedido) {
-        pedidos.remove(pedido);
+    public List<ItemEstoque> getListaItensEstoque() {
+        return itensEstoque;
     }
 
-    public void removerOrcamento(Orcamento orcamento) {
-        orcamentos.remove(orcamento);
+    public List<ItemPedido> getListaItensPedido() {
+        return itensPedidos;
     }
 
-    public void removerProduto(Produto produto) {
-        produtos.remove(produto);
+    public List<Orcamento> getListaOrcamento() {
+        return orcamentos;
+    }
+
+    public List<Pedido> getListaPedidos() {
+        return pedidos;
+    }
+
+    public List<Produto> getListaProdutos() {
+        return produtos;
+    }
+
+    public String getConteudo() {
+        return conteudo;
     }
 }
