@@ -1,5 +1,7 @@
 package com.example.sistemaVendas.Persistencias.repositories;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -114,6 +116,11 @@ public class RepOrcamentosORM implements IRepOrcamentos{
             double desconto = repCliente.descontoDeCliente(repCliente.findByName(orcamento.getNomeCliente()));
             valorFinal = valorFinal*desconto;
         }
+
+        BigDecimal valorFinalBD = BigDecimal.valueOf(valorFinal);
+        valorFinalBD = valorFinalBD.setScale(2, RoundingMode.HALF_UP);
+        valorFinal = valorFinalBD.doubleValue();
+
 
         orcamento.setValorFinal(valorFinal);
     }
