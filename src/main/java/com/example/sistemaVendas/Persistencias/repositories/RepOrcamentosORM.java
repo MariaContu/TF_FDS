@@ -98,8 +98,14 @@ public class RepOrcamentosORM implements IRepOrcamentos{
         double valorPedido = orcamento.getCustoPedido();
         double valorFinal = valorPedido * orcamento.getImposto(); //pedido com imposto
 
+        List<ItemPedido> listaPedido = orcamento.getPedido().getListaProdutos();
+        int somaItens=0;
+
         //verifica se tem desconto por 5 itens
-        if (orcamento.getPedido().getListaProdutos().size()>5) {
+        for (ItemPedido item : listaPedido) {
+           somaItens+=item.getItemQuant();
+        }
+        if (somaItens>5) {
             valorFinal=valorFinal*orcamento.getDesconto();
         }
 
@@ -109,13 +115,7 @@ public class RepOrcamentosORM implements IRepOrcamentos{
             valorFinal = valorFinal*desconto;
         }
 
-        //verifica disponibilidade de itens
-        if (verificaDisponibilidadeItens(orcamento.getPedido().getListaProdutos())) {
-            orcamento.setValorFinal(valorFinal);
-        }
-        else    {
-            throw new IllegalArgumentException("Produtos indisponiveis no estoque.");
-        }
+        orcamento.setValorFinal(valorFinal);
     }
 
     @Override

@@ -22,7 +22,9 @@ public class RepClienteORM implements IRepCliente{
         clientes.add(new Cliente(5,"Joao", 0, 0));
         clientes.add(new Cliente(6,"Amanda", 0, 0));
         clientes.add(new Cliente(7,"Yasmin", 0, 0));
-        clientes.add(new Cliente(8,"Lucas", 0, 0));
+        clientes.add(new Cliente(8,"Alysson", 0, 0));
+        clientes.add(new Cliente(9,"Gustavo", 0, 0));
+        clientes.add(new Cliente(10,"Joana", 0, 0));
     }
 
     @Override

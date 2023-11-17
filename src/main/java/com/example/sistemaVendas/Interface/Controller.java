@@ -1,4 +1,4 @@
-package com.example.sistemaVendas.Dominio.Interface;
+package com.example.sistemaVendas.Interface;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
