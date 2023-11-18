@@ -95,5 +95,11 @@ public class RepClienteORM implements IRepCliente{
 
         return (1-maiorDesconto);
     }
-    
+
+    @Override
+    public void addPedido(Cliente cliente, Orcamento orcamento) {
+        List<Orcamento> listaOrcamentos;
+        listaOrcamentos = cliente.getOrcamentos();
+        listaOrcamentos.add(orcamento);
+    }   
 }
