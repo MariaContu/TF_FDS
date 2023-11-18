@@ -19,6 +19,18 @@ public class Relatorio {
     private List<Orcamento> orcamentos;
     private List<Pedido> pedidos;
     private List<Produto> produtos;
+    
+    public Relatorio(List<Cliente> clientes, List<Galpao> galpoes, List<ItemEstoque> itensEstoque,
+            List<ItemPedido> itensPedidos, List<Orcamento> orcamentos, List<Pedido> pedidos, List<Produto> produtos) {
+        this.clientes = clientes;
+        this.galpoes = galpoes;
+        this.itensEstoque = itensEstoque;
+        this.itensPedidos = itensPedidos;
+        this.orcamentos = orcamentos;
+        this.pedidos = pedidos;
+        this.produtos = produtos;
+    }
+
     private String conteudo;
 
     public Relatorio(){}

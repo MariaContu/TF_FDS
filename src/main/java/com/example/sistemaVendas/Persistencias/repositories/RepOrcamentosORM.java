@@ -1,5 +1,7 @@
 package com.example.sistemaVendas.Persistencias.repositories;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -12,7 +14,6 @@ import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 import com.example.sistemaVendas.Dominio.model.ItemPedido;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
-import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
 import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 import com.example.sistemaVendas.Dominio.repositories.IRepOrcamentos;
 import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
@@ -26,8 +27,7 @@ public class RepOrcamentosORM implements IRepOrcamentos{
     private IRepCliente repCliente;
     @Autowired
     private IRepItemEstoque repItemEstoque;
-    @Autowired
-    private IRepGalpao repGalpao;
+
 
     public RepOrcamentosORM(){
         orcamentos = new LinkedList<>();
@@ -98,8 +98,14 @@ public class RepOrcamentosORM implements IRepOrcamentos{
         double valorPedido = orcamento.getCustoPedido();
         double valorFinal = valorPedido * orcamento.getImposto(); //pedido com imposto
 
+        List<ItemPedido> listaPedido = orcamento.getPedido().getListaProdutos();
+        int somaItens=0;
+
         //verifica se tem desconto por 5 itens
-        if (orcamento.getPedido().getListaProdutos().size()>5) {
+        for (ItemPedido item : listaPedido) {
+           somaItens+=item.getItemQuant();
+        }
+        if (somaItens>5) {
             valorFinal=valorFinal*orcamento.getDesconto();
         }
 
@@ -109,23 +115,21 @@ public class RepOrcamentosORM implements IRepOrcamentos{
             valorFinal = valorFinal*desconto;
         }
 
-        //verifica disponibilidade de itens
-        if (verificaDisponibilidadeItens(orcamento.getPedido().getListaProdutos())) {
-            orcamento.setValorFinal(valorFinal);
-        }
-        else    {
-            throw new IllegalArgumentException("Produtos indisponiveis no estoque.");
-        }
+        BigDecimal valorFinalBD = BigDecimal.valueOf(valorFinal);
+        valorFinalBD = valorFinalBD.setScale(2, RoundingMode.HALF_UP);
+        valorFinal = valorFinalBD.doubleValue();
+
+
+        orcamento.setValorFinal(valorFinal);
     }
 
     @Override
     public boolean verificaDisponibilidadeItens(List<ItemPedido> itensPedido) {
         for (ItemPedido item : itensPedido) {
-            ItemEstoque itemEstoque = repGalpao.findById(item.getItemId());
-            int quantDesejada = item.getItemQuant();
-            int quantEstoque = itemEstoque.getQuantAtual();
-
-            if (quantDesejada>quantEstoque) {
+            ItemEstoque itemEstoque = repItemEstoque.findItemEstoqueByProdutoID(item.getItemId());
+            if (itemEstoque == null || itemEstoque.getQuantAtual() < item.getItemQuant()) {
+                // Log para identificar qual item não tem estoque suficiente
+                System.out.println("Não há estoque suficiente para o item com ID: " + item.getItemId());
                 return false;
             }
         }

@@ -55,4 +55,8 @@ public class ServicoEstoque {
         return repGalpao.findById(id);
     }
 
+    public void retiraQuantItem(ItemEstoque item, int quantDesejada)    {
+        repItemEstoque.retiraQuantItem(item, quantDesejada);
+    }
 }
+

@@ -1,15 +1,19 @@
-package com.example.sistemaVendas.Dominio.Interface;
+package com.example.sistemaVendas.Interface;
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.sistemaVendas.Aplicacao.EfetivarOrcamento;
 import com.example.sistemaVendas.Aplicacao.ProdutosDisponiveis;
 import com.example.sistemaVendas.Aplicacao.SolicitarOrcamento;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
@@ -21,6 +25,8 @@ public class Controller {
     private ProdutosDisponiveis produtosDisponiveis;
     @Autowired
     private SolicitarOrcamento solicitaOrcamento;
+    @Autowired
+    private EfetivarOrcamento efetivaOrcamento;
 
     @GetMapping("")
     @CrossOrigin("*")
@@ -47,4 +53,19 @@ public class Controller {
         Orcamento orcamento = solicitaOrcamento.solicitarOrcamento(novoOrcamento.getId(),novoOrcamento.getData(),novoOrcamento.getNomeCliente(),novoOrcamento.getPedido());
         return ResponseEntity.ok(orcamento);
     }
+
+    @PutMapping("efetivarOrcamento/id={id}")
+    @CrossOrigin("*")
+    public ResponseEntity<Orcamento> efetivarOrcamento(@PathVariable("id") long idOrcamento) {
+
+        Date dataAtual = new Date();
+        Orcamento orcamento = efetivaOrcamento.efetivarOrcamento(idOrcamento, dataAtual);
+        if (orcamento.getEfetivado()) {
+            return ResponseEntity.ok(orcamento);
+        } else {
+            // Se o orçamento não foi efetivado, escolha um status HTTP apropriado
+            // Aqui estou usando 409 Conflict, mas você pode escolher outro status que faça sentido
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(orcamento);
+        }
+    } 
 }

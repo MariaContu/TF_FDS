@@ -11,7 +11,7 @@ import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 
 @Repository
 public class RepClienteORM implements IRepCliente{
-    public List<Cliente> clientes;
+    private List<Cliente> clientes;
 
     public RepClienteORM()  {
         clientes = new LinkedList<>();
@@ -22,7 +22,9 @@ public class RepClienteORM implements IRepCliente{
         clientes.add(new Cliente(5,"Joao", 0, 0));
         clientes.add(new Cliente(6,"Amanda", 0, 0));
         clientes.add(new Cliente(7,"Yasmin", 0, 0));
-        clientes.add(new Cliente(8,"Lucas", 0, 0));
+        clientes.add(new Cliente(8,"Alysson", 0, 0));
+        clientes.add(new Cliente(9,"Gustavo", 0, 0));
+        clientes.add(new Cliente(10,"Joana", 0, 0));
     }
 
     @Override
@@ -91,6 +93,7 @@ public class RepClienteORM implements IRepCliente{
 
         double maiorDesconto=Math.max(descontoValorMedio, descontoUltimosMeses);
 
-        return maiorDesconto;
+        return (1-maiorDesconto);
     }
+    
 }

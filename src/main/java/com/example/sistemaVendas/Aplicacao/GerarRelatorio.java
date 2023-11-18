@@ -8,12 +8,11 @@ import com.example.sistemaVendas.Dominio.model.ItemPedido;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.model.Pedido;
 import com.example.sistemaVendas.Dominio.model.Produto;
-import com.example.sistemaVendas.Dominio.repositories.IRepRelatorio;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GerarRelatorio implements IRepRelatorio {
+public class GerarRelatorio {
 
     private List<Relatorio> relatorios;
 
@@ -21,7 +20,6 @@ public class GerarRelatorio implements IRepRelatorio {
         this.relatorios = new ArrayList<>();
     }
 
-    @Override
     public void gerarRelatorioCliente(Cliente cliente) {
         String conteudoRelatorio = "Relatório de Clientes:\n"
                 + "ID do Cliente: " + cliente.getId() + "\n"
@@ -35,7 +33,6 @@ public class GerarRelatorio implements IRepRelatorio {
         relatorios.add(relatorio);
     }
 
-    @Override
     public void gerarRelatorioGalpao(Galpao galpao, ItemEstoque item) {
         String conteudoRelatorio = "Relatório do Galpão:\n"
                 + "ID do Item: " + item.getId() + "\n"
@@ -50,7 +47,6 @@ public class GerarRelatorio implements IRepRelatorio {
         relatorios.add(relatorio);
     }
 
-    @Override
     public void gerarRelatorioItemEstoque(ItemEstoque item) {
         String conteudoRelatorio = "Relatório de Itens de Estoque:\n"
                 + "ID do Item: " + item.getId() + "\n"
@@ -65,7 +61,6 @@ public class GerarRelatorio implements IRepRelatorio {
         relatorios.add(relatorio);
     }
 
-    @Override
     public void gerarRelatorioItemPedido(ItemPedido item) {
         String conteudoRelatorio = "Relatório de Itens de Pedido:\n"
                 + "ID do Item: " + item.getItemId() + "\n"
@@ -77,7 +72,6 @@ public class GerarRelatorio implements IRepRelatorio {
         relatorios.add(relatorio);
     }
 
-    @Override
     public void gerarRelatorioOrcamento(Orcamento orcamento) {
         String conteudoRelatorio = "Relatório de Orçamentos:\n"
                 + "ID: " + orcamento.getId() + "\n"
@@ -92,7 +86,6 @@ public class GerarRelatorio implements IRepRelatorio {
         relatorios.add(relatorio);
     }
 
-    @Override
     public void gerarRelatorioPedido(Pedido pedidos) {
         StringBuilder conteudoRelatorio = new StringBuilder();
         conteudoRelatorio.append("Relatório de Pedidos:\n")
@@ -113,7 +106,6 @@ public class GerarRelatorio implements IRepRelatorio {
         relatorios.add(relatorio);
     }
 
-    @Override
     public void gerarRelatorioProduto(Produto produto) {
         String conteudoRelatorio = "Relatório de Produtos:\n" +
                 "ID do Produto: " + produto.getCodigo() + "\n" +
@@ -126,17 +118,14 @@ public class GerarRelatorio implements IRepRelatorio {
         relatorios.add(relatorio);
     }
 
-    @Override
     public void salvarRelatorio(Relatorio r) {
         relatorios.add(r);
     }
 
-    @Override
     public List<Relatorio> listarTodosRelatorios() {
         return relatorios;
     }
 
-    @Override
     public Relatorio encontrarPorCliente(Cliente c) {
         for (Relatorio r : relatorios) {
             if (c == r.getClientes()) {
@@ -146,7 +135,6 @@ public class GerarRelatorio implements IRepRelatorio {
         return null;
     }
 
-    @Override
     public void removerRelatorio(long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removerRelatorio'");

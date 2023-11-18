@@ -3,8 +3,8 @@ package com.example.sistemaVendas.Dominio.model;
 import java.util.Date;
 
 public class Orcamento {
-    
     private long id;
+
     private Date data;
     private String nomeCliente;
     private Pedido pedido;
@@ -12,8 +12,8 @@ public class Orcamento {
     private double imposto = 1.1; // imposto de 10%
     private double desconto = 0.95; //padrao para pedidos com mais de 5 itens
     private double valorFinal;
-    private boolean valido;
-    private boolean efetivado;
+    private boolean valido=true;
+    private boolean efetivado=false;
 
     public Orcamento(){}
 
