@@ -1,6 +1,5 @@
 package com.example.sistemaVendas.Persistencias.repositories;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;

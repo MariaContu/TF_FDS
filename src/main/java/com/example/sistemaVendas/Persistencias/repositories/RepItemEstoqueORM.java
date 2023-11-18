@@ -52,6 +52,6 @@ public class RepItemEstoqueORM implements IRepItemEstoque{
         if (item.getQuantAtual()-quantDesejada>=item.getQuantMin() && quantDesejada<=item.getQuantAtual()) {
             item.setQuantAtual(item.getQuantAtual()-quantDesejada);
         }
-        else System.out.println("Quantidade Desejada Invalida");
+        else System.out.println("Quantidade Desejada Invalida do item de id= "+item.getCodigoProduto());
     }    
 }

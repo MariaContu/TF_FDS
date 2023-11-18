@@ -33,6 +33,7 @@ public class EfetivarOrcamento {
                 for (ItemPedido i : lista) {
                     ItemEstoque itemEstoque = servicoEstoque.encontrarItemEstoquePorProdutoID(i.getItemId());
                     servicoEstoque.retiraQuantItem(itemEstoque, i.getItemQuant());
+                    
                 }
                 
                 //entao marcamos como efetivado = true
