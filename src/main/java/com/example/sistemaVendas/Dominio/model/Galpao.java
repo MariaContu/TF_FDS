@@ -1,9 +1,12 @@
 package com.example.sistemaVendas.Dominio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Galpao {
@@ -11,19 +14,16 @@ public class Galpao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long idItem;
-    private int quantItem;
+    public Galpao(long id){
+        this.id = id;
+    }
 
     public long getId() {
         return id;
     }
 
-    public long getIdItem() {
-        return idItem;
-    }
-
-    public int getQuantItem() {
-        return quantItem;
+    public List<ItemEstoque> galpao(){
+        return new LinkedList<>();
     }
     
 }

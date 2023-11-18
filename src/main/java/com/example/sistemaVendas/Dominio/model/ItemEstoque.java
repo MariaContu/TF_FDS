@@ -1,9 +1,9 @@
 package com.example.sistemaVendas.Dominio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class ItemEstoque {
@@ -17,7 +17,12 @@ public class ItemEstoque {
     private int quantMin;
     private int quantAtual;
 
-    public ItemEstoque(){}
+    public ItemEstoque(long codProd, int qntMax, int qntMin, int qntAtual){
+        codigoProduto = codProd;
+        quantMax = qntMax;
+        quantMin = qntMin;
+        quantAtual = qntAtual;
+    }
 
     public int getId() {
         return id;

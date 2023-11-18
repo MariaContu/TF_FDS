@@ -28,5 +28,15 @@ public class RepProdutosMem implements IRepProdutos{
     public List<Produto> all() {
         return prods;
     }
+
+    @Override
+    public Produto findById(long id) {
+        for (Produto prod : prods) {
+            if(prod.getCodigo() == id){
+                return prod;
+            }
+        }
+        return null;
+    }
     
 }

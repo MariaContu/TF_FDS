@@ -1,9 +1,9 @@
 package com.example.sistemaVendas.Dominio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import java.util.Date;
 
@@ -20,8 +20,6 @@ public class Orcamento {
     private double imposto = 1.1; // imposto de 10%
     private double desconto = 0.95; //padrao para pedidos com mais de 5 itens
     private double valorFinal;
-
-    public Orcamento(){}
 
     public Orcamento(long id, Date data, String nomeCliente, Pedido pedido, double custoPedido, double valorFinal)  {
         this.id=id;

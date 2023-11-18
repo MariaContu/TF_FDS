@@ -1,10 +1,9 @@
 package com.example.sistemaVendas.Dominio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 @Entity
 public class ItemPedido {
     
@@ -13,8 +12,6 @@ public class ItemPedido {
     private long itemId;
 
     private int itemQuant;
-
-    public ItemPedido(){}
 
     public ItemPedido(long id, int quant){
         itemId=id;
