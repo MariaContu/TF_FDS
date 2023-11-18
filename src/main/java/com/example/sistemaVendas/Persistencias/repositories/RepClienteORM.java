@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.sistemaVendas.Dominio.model.Cliente;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
+import com.example.sistemaVendas.Dominio.model.Pedido;
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 
 @Repository
@@ -94,6 +95,13 @@ public class RepClienteORM implements IRepCliente{
         double maiorDesconto=Math.max(descontoValorMedio, descontoUltimosMeses);
 
         return (1-maiorDesconto);
+    }
+
+    @Override
+    public void addPedido(Cliente cliente, Orcamento orcamento) {
+        List<Orcamento> listaOrcamentos;
+        listaOrcamentos = cliente.getOrcamentos();
+        listaOrcamentos.add(orcamento);
     }
     
 }

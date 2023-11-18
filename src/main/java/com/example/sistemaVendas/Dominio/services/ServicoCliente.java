@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 import com.example.sistemaVendas.Dominio.model.Cliente;
+import com.example.sistemaVendas.Dominio.model.Orcamento;
+import com.example.sistemaVendas.Dominio.model.Pedido;
 
 @Service
 public class ServicoCliente {
@@ -29,5 +31,8 @@ public class ServicoCliente {
     }
     public void calculaDescontoUltimosSeisMeses(Cliente cliente){
         repCliente.calculaDescontoUltimosSeisMeses(cliente);
+    }
+    public void addPedido(Cliente cliente, Orcamento orcamento)  {
+        repCliente.addPedido(cliente, orcamento);
     }
 }
