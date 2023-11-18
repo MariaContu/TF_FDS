@@ -16,5 +16,7 @@ public interface IRepCliente {
     double descontoDeCliente(Cliente cliente);
 
     void addPedido(Cliente cliente, Orcamento orcamento);
+    void atualizaComprasUltimosMeses(Cliente cliente);
+    void atualizaValorMedio(Cliente cliente);
 
 }

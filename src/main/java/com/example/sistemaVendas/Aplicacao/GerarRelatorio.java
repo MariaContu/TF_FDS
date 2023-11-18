@@ -1,25 +1,25 @@
 package com.example.sistemaVendas.Aplicacao;
 
-import java.util.List;
+import com.example.sistemaVendas.Aplicacao.model.Relatorio;
+import com.example.sistemaVendas.Aplicacao.services.ServicoRelatorio;
+import com.example.sistemaVendas.Persistencias.repositories.RepClienteORM;
+import com.example.sistemaVendas.Persistencias.repositories.RepOrcamentosORM;
+import com.example.sistemaVendas.Persistencias.repositories.RepProdutosORM;
 
 public class GerarRelatorio {
+    public static void main(String[] args) {
+        RepClienteORM repCliente =  new RepClienteORM();
+        RepOrcamentosORM repOrcamentos = new RepOrcamentosORM();
+        RepProdutosORM repProdutos = new RepProdutosORM();
 
-    // Placeholder method for Analysis Model 1
-    public double realizarAnaliseModelo1(List<Double> dados) {
-        // Implement your analysis logic here
-        return 0.0;
-    }
+        ServicoRelatorio servicoRelatorio = new ServicoRelatorio(repCliente, repOrcamentos, repProdutos);
 
-    // Placeholder method for Analysis Model 2
-    public int realizarAnaliseModelo2(List<Integer> dados) {
-        // Implement your analysis logic here
-        return 0;
-    }
+        // Geração de relatórios
+        Relatorio relatorioVendasPorProduto = servicoRelatorio.analiseVendasPorProduto();
+        Relatorio relatorioDesempenhoCliente = servicoRelatorio.analiseDesempenhoCliente();
 
-    // Placeholder method for Analysis Model 3
-    public String realizarAnaliseModelo3(List<String> dados) {
-        // Implement your analysis logic here
-        return "Resultado";
+        // Exemplo de exibição dos relatórios
+        System.out.println("Relatório de Vendas por Produto:\n" + relatorioVendasPorProduto);
+        System.out.println("Relatório de Desempenho do Cliente:\n" + relatorioDesempenhoCliente);
     }
 }
-
