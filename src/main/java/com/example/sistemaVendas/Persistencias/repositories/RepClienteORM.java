@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.sistemaVendas.Dominio.model.Cliente;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
-import com.example.sistemaVendas.Dominio.model.Pedido;
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 
 @Repository
