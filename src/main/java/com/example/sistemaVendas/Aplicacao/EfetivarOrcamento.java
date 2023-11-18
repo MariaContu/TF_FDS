@@ -37,7 +37,14 @@ public class EfetivarOrcamento {
                 
                 //entao marcamos como efetivado = true
                 servicoVendas.atualizarEfetivadoOrcamento(o, true);
+
+                //ao efetivar, adicionamos o pedido a lista do cliente
                 servicoCliente.addPedido(servicoCliente.findClienteByName(o.getNomeCliente()), o);
+
+                //atualizamos as variaveis: valor medio e comprasUltimosSeisMeses
+                servicoCliente.atualizaValorMedio(servicoCliente.findClienteByName(o.getNomeCliente()));
+                servicoCliente.atualizaComprasUltimosMeses(servicoCliente.findClienteByName(o.getNomeCliente()));
+
             }
         }
         else servicoVendas.atualizarValidoOrcamento(o,false);

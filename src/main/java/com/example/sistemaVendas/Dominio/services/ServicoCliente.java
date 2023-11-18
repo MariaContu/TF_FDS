@@ -35,4 +35,12 @@ public class ServicoCliente {
     public void addPedido(Cliente cliente, Orcamento orcamento)  {
         repCliente.addPedido(cliente, orcamento);
     }
+
+    public void atualizaComprasUltimosMeses(Cliente cliente)    {
+        repCliente.atualizaComprasUltimosMeses(cliente);
+    }
+
+    public void atualizaValorMedio(Cliente cliente)    {
+        repCliente.atualizaValorMedio(cliente);
+    }
 }

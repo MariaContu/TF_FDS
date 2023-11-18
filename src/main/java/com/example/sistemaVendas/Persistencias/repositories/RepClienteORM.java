@@ -1,5 +1,7 @@
 package com.example.sistemaVendas.Persistencias.repositories;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class RepClienteORM implements IRepCliente{
 
     public RepClienteORM()  {
         clientes = new LinkedList<>();
-        clientes.add(new Cliente(1,"Ana", 0, 0));
+        clientes.add(new Cliente(1,"Ana", 55000, 12));
         clientes.add(new Cliente(2,"Joaquim", 0, 0));
         clientes.add(new Cliente(3,"Fernanda", 0, 0));
         clientes.add(new Cliente(4,"Augusto", 0, 0));
@@ -66,7 +68,6 @@ public class RepClienteORM implements IRepCliente{
                 cliente.setValorMedio(soma/cliente.getOrcamentos().size());
             }
         }
-        cliente.setValorMedio(0);
     }
 
     @Override
@@ -101,6 +102,26 @@ public class RepClienteORM implements IRepCliente{
         List<Orcamento> listaOrcamentos;
         listaOrcamentos = cliente.getOrcamentos();
         listaOrcamentos.add(orcamento);
+        cliente.setOrcamentos(listaOrcamentos);
     }
-    
+
+    @Override
+    public void atualizaValorMedio(Cliente cliente) {
+        calculaValorMedio(cliente); //setta o valor medio do cliente aualizado
+    }
+
+    @Override
+    public void atualizaComprasUltimosMeses(Cliente cliente) {
+        Calendar seisMesesAtras = Calendar.getInstance();
+        seisMesesAtras.add(Calendar.MONTH, -6);
+
+        int count=0;
+
+        for (Orcamento o : cliente.getOrcamentos()) {
+            if (o.getData().after(seisMesesAtras.getTime())) {
+                count++;
+            }
+        }
+        cliente.setComprasUltimosSeisMeses(count);
+    }
 }
