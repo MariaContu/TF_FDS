@@ -71,6 +71,19 @@ class SistemaVendasApplicationTests {
 	}
 
 	@Test
+	void testaValorFinalComDescontoDeCliente()	{
+		List<ItemPedido> listaPedido = new LinkedList<>();
+		listaPedido.add(new ItemPedido(1, 3));
+		listaPedido.add(new ItemPedido(2, 2));
+		Pedido novoPedido = new Pedido(1, 1, listaPedido);
+		Orcamento novOrcamento = new Orcamento(1,new Date(),"Ana",novoPedido);
+		servicoVendas.calculaCustoPedido(novOrcamento);
+		servicoVendas.calculaValorFinal(novOrcamento);
+		double valorFinalCalculado = novOrcamento.getValorFinal();
+		assertEquals(18.87, valorFinalCalculado,0.01,"Custo do pedido incorreto.");
+	}
+
+	@Test
 	void testaValidade()	{
 		
 	}
