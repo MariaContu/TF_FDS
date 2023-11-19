@@ -7,9 +7,9 @@ Desenvolvimento de sistema de vendas
 
 ✅ Modelagem da solução segundo arquitetura CLEAN
 
-⬜ Implementação do Back End
+⬜ Implementação do Back End - FALTA RELATORIO ANALITICO
 
-⬜ Implementar driver de teste
+✅ Implementar driver de teste
 
 - para pelo menos duas das classes que contenham a lógica do negócio
 
