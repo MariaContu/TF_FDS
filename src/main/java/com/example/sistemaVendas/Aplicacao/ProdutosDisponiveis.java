@@ -20,5 +20,4 @@ public class ProdutosDisponiveis {
     public Produto findByID(long id)   {
         return servicoEstoque.encontrarProdutoPorId(id);
     }
-
 }

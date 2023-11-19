@@ -16,24 +16,23 @@ public class RepProdutosORM implements IRepProdutos {
 
     public RepProdutosORM(){
         produtos=new LinkedList<>();
-        produtos.add(new Produto(1,"Café Espresso", 3.50));
-        produtos.add(new Produto(2,"Cappuccino com Nutella", 7.00));
-        produtos.add(new Produto(3,"Affogato - Sorvete de Baunilha com Espresso", 10.00));
-        produtos.add(new Produto(4, "Latte Macchiato", 8.50));
-        produtos.add(new Produto(5, "Mocha com Chocolate", 9.00));
-        produtos.add(new Produto(6, "Café Passado - Americano", 4.00));
-        produtos.add(new Produto(7, "4 Brigadeiros", 8.00));
-        produtos.add(new Produto(8, "Tiramissu", 10.00));
-        produtos.add(new Produto(9, "Bolo de Cenoura com Chocolate", 6.50));
-        produtos.add(new Produto(10, "Cupcake de Baunilha com Brigadeiro", 5.00));
-
+        produtos.add(new Produto(1,"Placa-mae", 730.50));
+        produtos.add(new Produto(2,"Placa de video", 1900.00));
+        produtos.add(new Produto(3,"Water cooler", 500.00));
+        produtos.add(new Produto(4, "Fonte 750w", 480.50));
+        produtos.add(new Produto(5, "Memória RAM 16gb (2x8gb)", 335.00));
+        produtos.add(new Produto(6, "Processador", 1400.00));
+        produtos.add(new Produto(7, "SSD 500gb", 350.00));
+        produtos.add(new Produto(8, "M.2 1TB", 400.80));
+        produtos.add(new Produto(9, "Monitor 144hz", 920.50));
+        produtos.add(new Produto(10, "Teclado Mecanico", 250.0));
+        produtos.add(new Produto(11, "Mouse sem fio",650.50));
     }
 
 
     @Override
     public void save(Produto p) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        produtos.add(p);
     }
 
     @Override

@@ -12,18 +12,16 @@ public class Orcamento {
     private double imposto = 1.1; // imposto de 10%
     private double desconto = 0.95; //padrao para pedidos com mais de 5 itens
     private double valorFinal;
-    private boolean valido;
-    private boolean efetivado;
+    private boolean valido=true;
+    private boolean efetivado=false;
 
     public Orcamento(){}
 
-    public Orcamento(long id, Date data, String nomeCliente, Pedido pedido, double custoPedido, double valorFinal)  {
+    public Orcamento(long id, Date data, String nomeCliente, Pedido pedido)  {
         this.id=id;
         this.data=data;
         this.nomeCliente=nomeCliente;
         this.pedido=pedido;
-        this.custoPedido=custoPedido;
-        this.valorFinal=valorFinal;
     }
 
     public long getId() {
@@ -66,6 +64,10 @@ public class Orcamento {
         return efetivado;
     }
 
+    public void setCustoPedido(double custoPedido) {
+        this.custoPedido = custoPedido;
+    }
+
     public void setValorFinal(double novoValor)   {
         this.valorFinal=novoValor;
     }
@@ -76,5 +78,9 @@ public class Orcamento {
 
     public void setValido(boolean valido) {
         this.valido = valido;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 }

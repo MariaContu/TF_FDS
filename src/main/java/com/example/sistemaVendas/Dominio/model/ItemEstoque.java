@@ -11,6 +11,14 @@ public class ItemEstoque {
 
     public ItemEstoque(){}
 
+    public ItemEstoque(int id, long codigoProduto, int quantMax, int quantMin, int quantAtual){
+        this.id=id;
+        this.codigoProduto=codigoProduto;
+        this.quantMax=quantMax;
+        this.quantMin=quantMin;
+        this.quantAtual=quantAtual;
+    }
+
     public int getId() {
         return id;
     }
@@ -31,11 +39,8 @@ public class ItemEstoque {
         return quantAtual;
     }
 
-    public void setQuantAtual(int quantPedida) {
-        if (this.quantAtual-quantPedida>quantMin && quantPedida<=this.quantAtual) {
-            this.quantAtual = this.quantAtual-quantPedida;
-        }
-        else System.out.print("Quantidade inválida!");
+    public void setQuantAtual(int quantAtual) {
+        this.quantAtual=quantAtual;
     }
 
 }

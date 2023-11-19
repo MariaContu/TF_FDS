@@ -8,7 +8,6 @@ import com.example.sistemaVendas.Dominio.model.Produto;
 import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
 import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
-import com.example.sistemaVendas.Dominio.model.Galpao;
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 
 @Service
@@ -44,15 +43,17 @@ public class ServicoEstoque {
         repItemEstoque.addItemEstoque(itemEstoque);
     }
 
-    public void atualizarQuantidadeItemEstoque(ItemEstoque itemEstoque, int novaQuant) {
-        repItemEstoque.attQuantItemEstoque(itemEstoque, novaQuant);
+
+    public List<ItemEstoque> listAllProdutosInGalpao()  {
+        return repGalpao.listAllProdutos();
     }
 
-    public void removerItemEstoque(ItemEstoque itemEstoque) {
-        repItemEstoque.removeItemEstoque(itemEstoque);
+    public ItemEstoque findById(long id)    {
+        return repGalpao.findById(id);
     }
 
-    public void addGalpao(Galpao galpao)    {
-        repGalpao.addGalpao(galpao);
+    public void retiraQuantItem(ItemEstoque item, int quantDesejada)    {
+        repItemEstoque.retiraQuantItem(item, quantDesejada);
     }
+
 }

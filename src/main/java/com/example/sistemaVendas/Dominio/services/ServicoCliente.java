@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 import com.example.sistemaVendas.Dominio.model.Cliente;
+import com.example.sistemaVendas.Dominio.model.Orcamento;
 
 @Service
 public class ServicoCliente {
@@ -20,15 +21,29 @@ public class ServicoCliente {
         return repCliente.findByName(name);
     }
 
+    public Cliente findClienteById(long id) {
+        return repCliente.findById(id);
+    }
+
     public List<Cliente> findAllClientes() {
         return repCliente.allClientes();
     }
 
-    public void atualizarValorMedio(Cliente cliente, double novoValor) {
-        repCliente.attValorMedio(cliente, novoValor);
+    public void calculaValorMedio(Cliente cliente)  {
+        repCliente.calculaValorMedio(cliente);
+    }
+    public void calculaDescontoUltimosSeisMeses(Cliente cliente){
+        repCliente.calculaDescontoUltimosSeisMeses(cliente);
+    }
+    public void addPedido(Cliente cliente, Orcamento orcamento)  {
+        repCliente.addPedido(cliente, orcamento);
     }
 
-    public void atualizarComprasSeisMeses(Cliente cliente, int countMeses) {
-        repCliente.attComprasSeisMeses(cliente, countMeses);
+    public void atualizaComprasUltimosMeses(Cliente cliente)    {
+        repCliente.atualizaComprasUltimosMeses(cliente);
+    }
+
+    public void atualizaValorMedio(Cliente cliente)    {
+        repCliente.atualizaValorMedio(cliente);
     }
 }
