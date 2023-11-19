@@ -12,21 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.sistemaVendas.Dominio.model.Pedido;
+import com.example.sistemaVendas.Dominio.model.Cliente;
+import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 import com.example.sistemaVendas.Dominio.model.ItemPedido;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
-import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
-import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
+import com.example.sistemaVendas.Dominio.services.ServicoCliente;
+import com.example.sistemaVendas.Dominio.services.ServicoEstoque;
 import com.example.sistemaVendas.Dominio.services.ServicoVendas;
 
 @SpringBootTest
 class SistemaVendasApplicationTests {
 
 	@Autowired
-    private IRepProdutos repProdutos;
-	@Autowired
-    private IRepCliente repCliente;
-	@Autowired
     private ServicoVendas servicoVendas;
+	@Autowired
+    private ServicoEstoque servicoEstoque;	
+	@Autowired
+    private ServicoCliente servicoCliente;
 
 
 	@Test
@@ -51,11 +53,11 @@ class SistemaVendasApplicationTests {
 		listaPedido.add(new ItemPedido(1, 10));
 		listaPedido.add(new ItemPedido(2, 15));
 		Pedido novoPedido = new Pedido(1, 2, listaPedido);
-		Orcamento novOrcamento = new Orcamento(1,new Date(),"Joaquim",novoPedido);
+		Orcamento novOrcamento = new Orcamento(1,new Date(),"Augusto",novoPedido);
 		servicoVendas.calculaCustoPedido(novOrcamento);
 		servicoVendas.calculaValorFinal(novOrcamento);
 		double valorFinalCalculado = novOrcamento.getValorFinal();
-		assertEquals(146.3, valorFinalCalculado,0.01,"Custo do pedido incorreto.");
+		assertEquals(146.3, valorFinalCalculado,0.01,"Valor Final Com Desconto Padrao incorreto.");
 	}
 
 	@Test
@@ -64,11 +66,11 @@ class SistemaVendasApplicationTests {
 		listaPedido.add(new ItemPedido(1, 2));
 		listaPedido.add(new ItemPedido(2, 2));
 		Pedido novoPedido = new Pedido(1, 2, listaPedido);
-		Orcamento novOrcamento = new Orcamento(1,new Date(),"Joaquim",novoPedido);
+		Orcamento novOrcamento = new Orcamento(1,new Date(),"Augusto",novoPedido);
 		servicoVendas.calculaCustoPedido(novOrcamento);
 		servicoVendas.calculaValorFinal(novOrcamento);
 		double valorFinalCalculado = novOrcamento.getValorFinal();
-		assertEquals(23.1, valorFinalCalculado,0.01,"Custo do pedido incorreto.");
+		assertEquals(23.1, valorFinalCalculado,0.01,"Valor Final Sem Descontos incorreto.");
 	}
 
 	@Test
@@ -89,33 +91,36 @@ class SistemaVendasApplicationTests {
 		// Setup
 		Orcamento orcamentoValido = new Orcamento();
 		orcamentoValido.setData(new Date()); // Data atual para o teste
-		// Inicialize e configure servicoVendas conforme necessário, ou mock seu comportamento
 
-		// Action
 		boolean resultadoAtual = servicoVendas.verificaValidade(orcamentoValido);
 
-		// Assertion
 		boolean resultadoEsperado = true;
 		assertEquals(resultadoEsperado, resultadoAtual, "O orçamento deveria ser considerado válido.");
 	}
 
 	@Test
 	void testaValidadeOrçamentoExpirado() {
-		// Setup
 		Calendar dataExpirada = Calendar.getInstance();
 		dataExpirada.add(Calendar.YEAR, -1); // Data definida para um ano atrás para garantir expiração
 
 		Orcamento orcamentoExpirado = new Orcamento();
 		orcamentoExpirado.setData(dataExpirada.getTime());
-		// Inicialize e configure servicoVendas conforme necessário, ou mock seu comportamento
 
-		// Action
 		boolean resultadoAtual = servicoVendas.verificaValidade(orcamentoExpirado);
 
-		// Assertion
 		boolean resultadoEsperado = false;
 		assertEquals(resultadoEsperado, resultadoAtual, "O orçamento deveria ser considerado inválido devido à expiração da validade.");
 	}
 
+	@Test
+	void testaAtualizacaoQuantidadeDeEstoque()	{
+		//pedindo cafe
+		ItemEstoque itemPedido = servicoEstoque.encontrarItemEstoquePorProdutoID(1);
+		servicoEstoque.retiraQuantItem(itemPedido, 10);
+		int quantFinal = servicoEstoque.encontrarItemEstoquePorProdutoID(1).getQuantAtual();
+		assertEquals(140, quantFinal, "Quantidade não atualizada ou atualizada da maneira incorreta");
+	}
+
+	
 
 }

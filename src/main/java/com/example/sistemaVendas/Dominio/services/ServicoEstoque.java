@@ -43,9 +43,6 @@ public class ServicoEstoque {
         repItemEstoque.addItemEstoque(itemEstoque);
     }
 
-    public void atualizarQuantidadeItemEstoque(ItemEstoque itemEstoque, int quantDesejada) {
-        repItemEstoque.retiraQuantItem(itemEstoque,quantDesejada);
-    }
 
     public List<ItemEstoque> listAllProdutosInGalpao()  {
         return repGalpao.listAllProdutos();

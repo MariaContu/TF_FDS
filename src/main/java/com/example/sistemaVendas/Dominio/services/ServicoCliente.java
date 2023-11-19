@@ -21,6 +21,10 @@ public class ServicoCliente {
         return repCliente.findByName(name);
     }
 
+    public Cliente findClienteById(long id) {
+        return repCliente.findById(id);
+    }
+
     public List<Cliente> findAllClientes() {
         return repCliente.allClientes();
     }

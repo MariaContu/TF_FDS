@@ -8,6 +8,7 @@ import com.example.sistemaVendas.Dominio.model.Orcamento;
 public interface IRepCliente {
 
     Cliente findByName(String name);
+    Cliente findById(long id);
     List<Cliente> allClientes();
 
     void calculaValorMedio(Cliente cliente);
