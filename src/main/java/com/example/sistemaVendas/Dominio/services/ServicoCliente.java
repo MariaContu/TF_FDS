@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 import com.example.sistemaVendas.Dominio.model.Cliente;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
-import com.example.sistemaVendas.Dominio.model.Pedido;
 
 @Service
 public class ServicoCliente {
