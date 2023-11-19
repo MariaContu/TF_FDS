@@ -1,5 +1,7 @@
 package com.example.sistemaVendas.Dominio.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +14,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private List<Orcamento> orcamentos;
     private String name;
     private double valorMedio;
     private int comprasUltimosSeisMeses;
@@ -31,6 +34,10 @@ public class Cliente {
         return name;
     }
 
+    public List<Orcamento> getOrcamentos() {
+        return orcamentos;
+    }
+
     public double getValorMedio() {
         return valorMedio;
     }
@@ -45,5 +52,9 @@ public class Cliente {
 
     public void setComprasUltimosSeisMeses(int comprasUltimosSeisMeses) {
         this.comprasUltimosSeisMeses = comprasUltimosSeisMeses;
+    }
+
+    public void setOrcamentos(List<Orcamento> orcamentos)    {
+        this.orcamentos=orcamentos;
     }
 }

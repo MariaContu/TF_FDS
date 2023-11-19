@@ -1,5 +1,6 @@
 package com.example.sistemaVendas.Persistencias.repositories;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -11,28 +12,44 @@ import com.example.sistemaVendas.Dominio.model.Pedido;
 @Repository
 public class RepPedidosMem implements IRepPedido{
 
+    private List<Pedido> pedidos;
+
+    public RepPedidosMem(){
+        pedidos = new LinkedList<>();
+    }
+
     @Override
     public List<Pedido> all() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'all'");
+        return pedidos;
     }
 
     @Override
     public List<Pedido> pedidosPorCliente(long clienteID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pedidosPorCliente'");
+        List<Pedido> list = new LinkedList<>();
+        for (Pedido ped : pedidos) {
+            if(ped.getClienteId() == clienteID){
+                list.add(ped);
+            }
+        }
+        return list;
     }
 
     @Override
-    public void adicionarProd(long idPedido, ItemPedido novoItem) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionarProd'");
+    public void adicionarProd(long idPedido, List<ItemPedido> listPed) {
+        for (Pedido pedido : pedidos) {
+            if(pedido.getId() == idPedido){
+                pedido.setListaProdutos(listPed);
+            }
+        }
     }
 
     @Override
-    public void retirarProd(long idPedido, ItemPedido itemRetirado) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retirarProd'");
+    public void retirarProds(long idPedido, List<ItemPedido> itensRetirados) {
+        for (Pedido pedido : pedidos) {
+            if(pedido.getId() == idPedido){
+                pedido.getListaProdutos().removeAll(itensRetirados);
+            }
+        }
     }
     
 }

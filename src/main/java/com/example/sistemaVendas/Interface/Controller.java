@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.sistemaVendas.Aplicacao.ProdutosDisponiveis_UC;
@@ -18,6 +19,12 @@ public class Controller {
     @CrossOrigin("*")
     public List<Produto> produtosDisponiveis() {
         return produtosDisponiveis_UC.run();
+    }
+
+    @GetMapping("id={id}")
+    @CrossOrigin("*")
+    public Produto byId(@PathVariable long id) {
+        return produtosDisponiveis_UC.byId(id);
     }
     
 }

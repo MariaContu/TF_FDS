@@ -20,4 +20,10 @@ public class ServicoEstoque{
     public List<Produto> produtosDisponiveis(){
         return produtosRep.all();
     }
+
+    public Produto findByID(long id){
+        return produtosRep.findById(id);
+    }
+
+    
 }

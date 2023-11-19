@@ -10,7 +10,7 @@ public interface IRepPedido {
     List<Pedido> all();
     List<Pedido> pedidosPorCliente(long clienteID);
 
-    void adicionarProd(long idPedido, ItemPedido novoItem);   
-    void retirarProd(long idPedido, ItemPedido itemRetirado);   
+    void adicionarProd(long idPedido, List<ItemPedido> list);   
+    void retirarProds(long idPedido, List<ItemPedido> itensRetirados);   
 
 }

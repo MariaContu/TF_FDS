@@ -17,4 +17,8 @@ public class ProdutosDisponiveis_UC {
         return servicoEstoque.produtosDisponiveis();
     }
 
+    public Produto byId(long id){
+        return servicoEstoque.findByID(id);
+    }
+
 }
