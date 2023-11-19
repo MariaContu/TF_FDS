@@ -3,8 +3,10 @@ package com.example.sistemaVendas.Persistencias.repositories;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.sistemaVendas.Dominio.interface_repositories.IRepGalpao;
 import com.example.sistemaVendas.Dominio.interface_repositories.IRepPedido;
 import com.example.sistemaVendas.Dominio.model.ItemPedido;
 import com.example.sistemaVendas.Dominio.model.Pedido;
@@ -13,6 +15,8 @@ import com.example.sistemaVendas.Dominio.model.Pedido;
 public class RepPedidosMem implements IRepPedido{
 
     private List<Pedido> pedidos;
+    @Autowired
+    private IRepGalpao repGalpao;
 
     public RepPedidosMem(){
         pedidos = new LinkedList<>();
@@ -38,6 +42,9 @@ public class RepPedidosMem implements IRepPedido{
     public void adicionarProd(long idPedido, List<ItemPedido> listPed) {
         for (Pedido pedido : pedidos) {
             if(pedido.getId() == idPedido){
+                for (ItemPedido item : listPed) {
+                    repGalpao.removerItemEstoquePorQntd(item.getItemId(), item.getItemQuant());
+                }
                 pedido.setListaProdutos(listPed);
             }
         }
@@ -48,6 +55,9 @@ public class RepPedidosMem implements IRepPedido{
         for (Pedido pedido : pedidos) {
             if(pedido.getId() == idPedido){
                 pedido.getListaProdutos().removeAll(itensRetirados);
+                for (ItemPedido item : itensRetirados) {
+                    repGalpao.atualizarItemEstoque(item.getItemId(), (item.getItemQuant()+repGalpao.obterItemEstoquePorId(item.getItemId()).getQuantAtual()));
+                }
             }
         }
     }

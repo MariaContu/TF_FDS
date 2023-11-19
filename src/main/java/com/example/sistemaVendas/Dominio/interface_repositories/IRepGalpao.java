@@ -8,7 +8,7 @@ public interface IRepGalpao {
 
     List<ItemEstoque> listarItensEstoqueNoGalpao();
     ItemEstoque obterItemEstoquePorId(long itemId);
-    void atualizarItemEstoque(ItemEstoque itemEstoque);
-    void removerItemEstoque(long itemId);
+    void atualizarItemEstoque(long idItem, int qntItem);
+    void removerItemEstoquePorQntd(long itemId, int qntItem);
     
 }

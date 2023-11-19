@@ -35,15 +35,25 @@ public class RepGalpaoMem implements IRepGalpao{
     }
 
     @Override
-    public void atualizarItemEstoque(ItemEstoque itemEstoque) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizarItemEstoque'");
+    public void atualizarItemEstoque(long idItem, int qntItem) {
+        for (ItemEstoque item : galpao) {
+            if(item.getId() == idItem){
+                item.setQuantAtual(qntItem);
+            }
+        }
     }
 
     @Override
-    public void removerItemEstoque(long itemId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removerItemEstoque'");
+    public void removerItemEstoquePorQntd(long idItem, int qntItem) {
+        for (ItemEstoque item : galpao) {
+            if(item.getId() == idItem){
+                if(item.getQuantAtual()-qntItem <= item.getQuantMin()){
+                    atualizarItemEstoque(idItem, item.getQuantMin());
+                }else{
+                    item.setQuantAtual(item.getQuantAtual()-qntItem);
+                }
+            }
+        }
     }
     
 }
