@@ -79,4 +79,8 @@ public class Orcamento {
     public void setValido(boolean valido) {
         this.valido = valido;
     }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
 }

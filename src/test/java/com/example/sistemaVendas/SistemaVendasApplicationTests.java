@@ -2,6 +2,7 @@ package com.example.sistemaVendas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -84,8 +85,37 @@ class SistemaVendasApplicationTests {
 	}
 
 	@Test
-	void testaValidade()	{
-		
+	void testaValidadeOrçamentoValido() {
+		// Setup
+		Orcamento orcamentoValido = new Orcamento();
+		orcamentoValido.setData(new Date()); // Data atual para o teste
+		// Inicialize e configure servicoVendas conforme necessário, ou mock seu comportamento
+
+		// Action
+		boolean resultadoAtual = servicoVendas.verificaValidade(orcamentoValido);
+
+		// Assertion
+		boolean resultadoEsperado = true;
+		assertEquals(resultadoEsperado, resultadoAtual, "O orçamento deveria ser considerado válido.");
 	}
+
+	@Test
+	void testaValidadeOrçamentoExpirado() {
+		// Setup
+		Calendar dataExpirada = Calendar.getInstance();
+		dataExpirada.add(Calendar.YEAR, -1); // Data definida para um ano atrás para garantir expiração
+
+		Orcamento orcamentoExpirado = new Orcamento();
+		orcamentoExpirado.setData(dataExpirada.getTime());
+		// Inicialize e configure servicoVendas conforme necessário, ou mock seu comportamento
+
+		// Action
+		boolean resultadoAtual = servicoVendas.verificaValidade(orcamentoExpirado);
+
+		// Assertion
+		boolean resultadoEsperado = false;
+		assertEquals(resultadoEsperado, resultadoAtual, "O orçamento deveria ser considerado inválido devido à expiração da validade.");
+	}
+
 
 }
