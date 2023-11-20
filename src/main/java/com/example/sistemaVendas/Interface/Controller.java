@@ -67,10 +67,22 @@ public class Controller {
         }
     }
 
-    @GetMapping("todosRelatorios")
+    @GetMapping("mediaValorFinalOrcamentos")
     @CrossOrigin("*")
-    public Relatorio todosRelatorios()    {
-        return geraRelatorio.gerarRelatorio();
+    public Relatorio mediaValorFinalOrcamentos()    {
+        return geraRelatorio.relatorioMediaValorFinalTodosOrcamentos();
+    }
+
+    @GetMapping("mediaComprasUltimosSeisMeses")
+    @CrossOrigin("*")
+    public Relatorio mediaComprasUltimosSeisMeses()    {
+        return geraRelatorio.relatorioMediaComprasUltimosSeisMesesClientes();
+    }
+
+    @GetMapping("mediaQuantidadeItensPorCompra")
+    @CrossOrigin("*")
+    public Relatorio mediaQuantidadeItensPorCompra()    {
+        return geraRelatorio.relatorioMediaQuantidadeItensPorCompra();
     }
 
 }

@@ -18,122 +18,92 @@ import com.example.sistemaVendas.Dominio.model.Orcamento;
 @Service
 public class ServicoRelatorio {
     private IRepCliente repCliente;
-    private IRepOrcamentos repOrcamentos;
-    private IRepProdutos repProdutos;
 
-    public ServicoRelatorio(IRepCliente repCliente, IRepOrcamentos repOrcamentos, IRepProdutos repProdutos) {
+    public ServicoRelatorio(IRepCliente repCliente) {
         this.repCliente = repCliente;
-        this.repOrcamentos = repOrcamentos;
-        this.repProdutos = repProdutos;
     }
 
-    public Relatorio analiseVendasPorProduto() {
-        Relatorio relatorio = new Relatorio();
-        relatorio.adicionarSecao("Análise de Vendas por Produto:\n");
 
-        for (Produto produto : repProdutos.all()) {
-            int totalVendasProduto = calcularTotalVendasProduto(produto);
-            relatorio.adicionarSecao("Produto: " + produto.getDescricao() + ", Vendas: " + totalVendasProduto);
+    public Relatorio calculaMediaValorFinalTodosOrcamentos()   {
+        Relatorio relatorio = new Relatorio();
+
+        //pegar todos os orcamentos de clientes
+        List<Cliente> clientes = repCliente.allClientes();
+        int quantOrcamentos = 0;
+        double somaValorOrcamentos = 0;
+
+        for (Cliente c : clientes) {
+            quantOrcamentos += c.getOrcamentos().size();
+            for (Orcamento o : c.getOrcamentos()) {
+                somaValorOrcamentos+=o.getValorFinal();
+            }
         }
+
+        double mediaFinal =0;
+        if (quantOrcamentos!=0) {
+            mediaFinal=(somaValorOrcamentos/quantOrcamentos); 
+        }
+        
+
+        relatorio.adicionarSecao("Total de orçamentos = "+quantOrcamentos);
+        relatorio.adicionarSecao("Soma dos valores finais = "+somaValorOrcamentos);
+        relatorio.adicionarSecao("Média = soma/total = "+mediaFinal);
 
         return relatorio;
     }
 
-    private int calcularTotalVendasProduto(Produto produto) {
-        int totalVendas = 0;
+    public Relatorio calculaMediaComprasUltimosSeisMesesClientes()  {
+        Relatorio relatorio = new Relatorio();
 
-        for (Orcamento orcamento : repOrcamentos.all()) {
-            for (ItemPedido produtoOrcamento : orcamento.getPedido().getListaProdutos()) {
-                if (produtoOrcamento.getItemId() == produto.getCodigo()) {
-                    totalVendas += produtoOrcamento.getItemQuant();
+        //primeiro vamos somar todas as comprasUltimosMeses
+        int somaComprasUltimosMeses = 0;
+        int quantCli = repCliente.allClientes().size();
+
+        for (Cliente c : repCliente.allClientes()) {
+            somaComprasUltimosMeses+=c.getComprasUltimosSeisMeses();
+        }
+
+        double mediaFinal =0;
+        if (quantCli!=0) {
+            mediaFinal=((double)somaComprasUltimosMeses/(double)quantCli); 
+        }
+
+        relatorio.adicionarSecao("Total de clientes = "+quantCli);
+        relatorio.adicionarSecao("Soma de quantidade de compras nos ultimos seis meses = "+somaComprasUltimosMeses);
+        relatorio.adicionarSecao("Média de comprasUltimosSeisMeses/cliente = "+mediaFinal);
+
+        return relatorio;
+    }
+
+    public Relatorio calculaMediaQuantidadeItensPorCompra()  {
+        Relatorio relatorio = new Relatorio();
+
+
+        //primeiro vamos somar todos os orcamentos
+        //pegar todos os orcamentos de clientes
+        List<Cliente> clientes = repCliente.allClientes();
+        int quantOrcamentos = 0;
+        double somaItensEmCompras = 0;
+
+        for (Cliente c : clientes) {
+            quantOrcamentos += c.getOrcamentos().size();
+            for (Orcamento o : c.getOrcamentos()) {
+                for (ItemPedido i : o.getPedido().getListaProdutos()) {
+                    somaItensEmCompras+=i.getItemQuant();
                 }
             }
         }
 
-        return totalVendas;
-    }
-
-    public Relatorio analiseDesempenhoCliente() {
-        Relatorio relatorio = new Relatorio();
-        relatorio.adicionarSecao("Análise de Desempenho do Cliente:\n");
-
-        for (Cliente cliente : repCliente.allClientes()) {
-            double desempenhoCliente = calcularDesempenhoCliente(cliente);
-            relatorio.adicionarSecao("Cliente: " + cliente.getName() + ", Desempenho: " + desempenhoCliente);
+        double mediaFinal =0;
+        if (quantOrcamentos!=0) {
+            mediaFinal=(somaItensEmCompras/quantOrcamentos); 
         }
+
+        relatorio.adicionarSecao("Total de orçamentos efetivados = "+quantOrcamentos);
+        relatorio.adicionarSecao("Soma de quantidade de itens = "+somaItensEmCompras);
+        relatorio.adicionarSecao("Média de itens/orçamento = "+mediaFinal);
 
         return relatorio;
     }
 
-    private double calcularDesempenhoCliente(Cliente cliente) {
-        double desempenhoCliente = 0.0;
-
-        // Verifique se há compras nos últimos seis meses
-        if (cliente.getComprasUltimosSeisMeses() > 0) {
-            // Calcule o valor médio das compras
-            desempenhoCliente = cliente.getValorMedio() / cliente.getComprasUltimosSeisMeses();
-        }
-
-        return desempenhoCliente;
-    }
-
-    public List<String> calculaCustoMedioOrcamentos() {
-        List<Orcamento> orcamentos = repOrcamentos.all();
-        double custoTotal = 0;
-        double custoFinal = 0;
-        List<Double> vendasMensais = new ArrayList<>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM");
-    
-        List<String> result = new ArrayList<>();
-    
-        if (orcamentos != null && !orcamentos.isEmpty()) {
-            vendasMensais = listaVendasMensais(); // Inicializa uma lista com 12 elementos zerados
-    
-            for (Orcamento orcamento : orcamentos) {
-                custoTotal += orcamento.getCustoPedido();
-                custoFinal += orcamento.getValorFinal();
-                int mes = Integer.parseInt(dateFormat.format(orcamento.getData()));
-                double vendaTotal = orcamento.getValorFinal();
-    
-                vendasMensais.set(mes - 1, vendasMensais.get(mes - 1) + vendaTotal);
-            }
-    
-            int monthWithHighestSales = mesVendasMaximas(vendasMensais);
-    
-            result.add(String.format("A quantidade total de orçamentos é de: %d.", orcamentos.size()));
-            result.add(String.format("A média do custo total dos orçamentos cadastrados é: R$%.2f.",
-                    custoTotal / orcamentos.size()));
-            result.add(String.format("A média do custo final dos orçamentos cadastrados é: R$%.2f.",
-                    custoFinal / orcamentos.size()));
-            result.add(String.format("O mês %d é o mês com mais vendas.", monthWithHighestSales));
-        } else {
-            result.add("A quantidade total de orçamentos é de: 0.");
-            result.add("A média do custo total dos orçamentos cadastrados é: R$0.");
-            result.add("A média do custo final dos orçamentos cadastrados é: R$0.");
-        }
-    
-        return result;
-    }    
-
-    private List<Double> listaVendasMensais() {
-        List<Double> monthlySales = new ArrayList<>(12);
-        for (int i = 0; i < 12; i++) {
-            monthlySales.add(0.0);
-        }
-        return monthlySales;
-    }
-
-    private int mesVendasMaximas(List<Double> monthlySales) {
-        int monthWithMaxSales = 0;
-        double maxSales = Double.MIN_VALUE;
-
-        for (int i = 0; i < monthlySales.size(); i++) {
-            if (monthlySales.get(i) > maxSales) {
-                maxSales = monthlySales.get(i);
-                monthWithMaxSales = i + 1;
-            }
-        }
-
-        return monthWithMaxSales;
-    }
 }

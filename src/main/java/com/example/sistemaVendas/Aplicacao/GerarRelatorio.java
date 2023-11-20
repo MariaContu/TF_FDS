@@ -11,20 +11,32 @@ public class GerarRelatorio {
     @Autowired
     private ServicoRelatorio servicoRelatorio;
 
-    public Relatorio gerarRelatorio() {
-        Relatorio relatorio = new Relatorio();
+    public Relatorio relatorioMediaValorFinalTodosOrcamentos() {
+        Relatorio r = new Relatorio();
 
-        // Adicione o relatório de desempenho do cliente
-        relatorio.adicionarSecao("Relatório de Desempenho do Cliente:");
-        relatorio.getSecoes().addAll(servicoRelatorio.analiseDesempenhoCliente().getSecoes());
+        r.adicionarSecao("Relatório de média do valor final de todos os orçamentos efetivados:");
+        r.getSecoes().addAll(servicoRelatorio.calculaMediaValorFinalTodosOrcamentos().getSecoes());
 
-        // Adicione o relatório de vendas por produto
-        relatorio.adicionarSecao("\nRelatório de Vendas por Produto:");
-        relatorio.getSecoes().addAll(servicoRelatorio.analiseVendasPorProduto().getSecoes());
+        return r;
+    }
 
-        relatorio.adicionarSecao("\nRelatório do Custo Médio dos Orçamentos");
-        relatorio.adicionarConteudo(servicoRelatorio.calculaCustoMedioOrcamentos());
+    public Relatorio relatorioMediaComprasUltimosSeisMesesClientes() {
+        Relatorio r = new Relatorio();
 
-        return relatorio;
+        r.adicionarSecao("Relatório de média de compras nos últimos seis meses de todos os clientes:");
+        r.getSecoes().addAll(servicoRelatorio.calculaMediaComprasUltimosSeisMesesClientes().getSecoes());
+
+        return r;
+        
+    }
+
+    public Relatorio relatorioMediaQuantidadeItensPorCompra() {
+        Relatorio r = new Relatorio();
+
+        r.adicionarSecao("Relatório de média de itens por orçamento efetivado:");
+        r.getSecoes().addAll(servicoRelatorio.calculaMediaQuantidadeItensPorCompra().getSecoes());
+
+        return r;
+        
     }
 }

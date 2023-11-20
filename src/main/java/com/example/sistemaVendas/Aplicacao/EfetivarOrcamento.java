@@ -23,6 +23,11 @@ public class EfetivarOrcamento {
 
     public Orcamento efetivarOrcamento(long idOrcamento, Date dataEfetivacao)    {
         Orcamento o = servicoVendas.findByIdOrcamento(idOrcamento);
+        //verifica se ja foi efetivado
+        if (o.getEfetivado()==true) {
+            return o;
+        }
+
         //primeiro verifica a validade  da data
         if (servicoVendas.verificaValidade(o)) {
             //se for valido verificamos se os itens estao disponiveis
