@@ -15,8 +15,17 @@ public class RepGalpaoMem implements IRepGalpao{
 
     public RepGalpaoMem(){
         galpao = new LinkedList<>();
-        galpao.add(new ItemEstoque(10,10, 100, 10, 50));
-        galpao.add(new ItemEstoque(20,20, 100, 10, 50));
+        galpao.add(new ItemEstoque(1,1,200,20,150));
+        galpao.add(new ItemEstoque(2,2,200,20,150));
+        galpao.add(new ItemEstoque(3,3,200,20,150));
+        galpao.add(new ItemEstoque(4,4,200,20,150));
+        galpao.add(new ItemEstoque(5,5,200,20,150));
+        galpao.add(new ItemEstoque(6,6,200,20,150));
+        galpao.add(new ItemEstoque(7,7,200,20,150));
+        galpao.add(new ItemEstoque(8,8,200,20,150));
+        galpao.add(new ItemEstoque(9,9,200,20,150));
+        galpao.add(new ItemEstoque(10,10,200,20,150));
+        galpao.add(new ItemEstoque(11,11,200,20,150));
     }
 
     @Override
@@ -27,7 +36,7 @@ public class RepGalpaoMem implements IRepGalpao{
     @Override
     public ItemEstoque obterItemEstoquePorIdProduto(long itemId) {
        for (ItemEstoque item : galpao) {
-            if(item.getCodigoProduto() == itemId){
+            if(item.getId() == itemId){
                 return item;
             }
        }

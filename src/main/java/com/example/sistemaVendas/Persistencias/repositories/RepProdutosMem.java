@@ -15,8 +15,17 @@ public class RepProdutosMem implements IRepProdutos{
 
     public RepProdutosMem(){
         prods = new LinkedList<>();
-        prods.add(new Produto(10,"banana",3.5));
-        prods.add(new Produto(20,"maca",5.0));
+        prods.add(new Produto(1,"Placa-mae", 730.50));
+        prods.add(new Produto(2,"Placa de video", 1900.00));
+        prods.add(new Produto(3,"Water cooler", 500.00));
+        prods.add(new Produto(4, "Fonte 750w", 480.50));
+        prods.add(new Produto(5, "Memória RAM 16gb (2x8gb)", 335.00));
+        prods.add(new Produto(6, "Processador", 1400.00));
+        prods.add(new Produto(7, "SSD 500gb", 350.00));
+        prods.add(new Produto(8, "M.2 1TB", 400.80));
+        prods.add(new Produto(9, "Monitor 144hz", 920.50));
+        prods.add(new Produto(10, "Teclado Mecanico", 250.0));
+        prods.add(new Produto(11, "Mouse sem fio",650.50));
     }
 
     @Override

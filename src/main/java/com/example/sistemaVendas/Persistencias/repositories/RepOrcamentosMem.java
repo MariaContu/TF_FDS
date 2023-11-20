@@ -16,6 +16,7 @@ import com.example.sistemaVendas.Dominio.interface_repositories.IRepOrcamentos;
 import com.example.sistemaVendas.Dominio.interface_repositories.IRepProdutos;
 import com.example.sistemaVendas.Dominio.model.ItemPedido;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
+import com.example.sistemaVendas.Dominio.model.Produto;
 
 @Repository
 public class RepOrcamentosMem implements IRepOrcamentos{
@@ -92,7 +93,11 @@ public class RepOrcamentosMem implements IRepOrcamentos{
     public void calculaCustoPedido(Orcamento orcamento) {
         double custo = 0;
         for (ItemPedido item : orcamento.getPedido().getListaProdutos()) {
-            custo += repProdutos.findById(item.getItemId()).getPrecoUnit()*item.getItemQuant();
+            for (Produto produto : repProdutos.all()) {
+                if(produto.getCodigo() ==  repGalpao.obterItemEstoquePorIdProduto(item.getItemId()).getCodigoProduto()){
+                    custo += produto.getPrecoUnit()*item.getItemQuant();
+                }
+            }
         }
         orcamento.setCustoPedido(custo);
     }

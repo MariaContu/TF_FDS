@@ -17,9 +17,16 @@ public class RepClienteMem implements IRepCliente{
 
     public RepClienteMem(){
         clis = new LinkedList<>();
-        clis.add(new Cliente(1, "Lucas", 0, 0));
-        clis.add(new Cliente(2, "Contu", 0, 0));
-        clis.add(new Cliente(3, "Linus", 0, 0));
+        clis.add(new Cliente(1,"Ana", 55000, 12));
+        clis.add(new Cliente(2,"Joaquim", 11000, 8));
+        clis.add(new Cliente(3,"Fernanda", 0, 0));
+        clis.add(new Cliente(4,"Augusto", 0, 0));
+        clis.add(new Cliente(5,"Joao", 0, 0));
+        clis.add(new Cliente(6,"Amanda", 0, 0));
+        clis.add(new Cliente(7,"Yasmin", 0, 0));
+        clis.add(new Cliente(8,"Alysson", 0, 0));
+        clis.add(new Cliente(9,"Gustavo", 0, 0));
+        clis.add(new Cliente(10,"Joana", 0, 0));
     }
     
     @Override
@@ -92,10 +99,9 @@ public class RepClienteMem implements IRepCliente{
 
     @Override
     public void addPedido(Cliente cliente, Orcamento orcamento) {
-        List<Orcamento> listaOrcamentos;
-        listaOrcamentos = cliente.getOrcamentos();
-        listaOrcamentos.add(orcamento);
-        cliente.setOrcamentos(listaOrcamentos);
+        List<Orcamento> listOrcs = new LinkedList<>();
+        cliente.setOrcamentos(listOrcs);
+        cliente.getOrcamentos().add(orcamento);
     }
 
     @Override

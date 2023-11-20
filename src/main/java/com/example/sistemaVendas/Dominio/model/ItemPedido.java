@@ -9,6 +9,7 @@ public class ItemPedido {
     private int itemQuant;
 
     public ItemPedido(long itemId, int quant){
+        this.itemId = itemId;
         itemQuant=quant;
     }
 
