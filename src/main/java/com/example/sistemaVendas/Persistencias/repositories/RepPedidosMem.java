@@ -56,7 +56,7 @@ public class RepPedidosMem implements IRepPedido{
             if(pedido.getId() == idPedido){
                 pedido.getListaProdutos().removeAll(itensRetirados);
                 for (ItemPedido item : itensRetirados) {
-                    repGalpao.atualizarItemEstoque(item.getItemId(), (item.getItemQuant()+repGalpao.obterItemEstoquePorId(item.getItemId()).getQuantAtual()));
+                    repGalpao.atualizarItemEstoque(item.getItemId(), (item.getItemQuant()+repGalpao.obterItemEstoquePorIdProduto(item.getItemId()).getQuantAtual()));
                 }
             }
         }

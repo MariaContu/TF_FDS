@@ -1,15 +1,10 @@
 package com.example.sistemaVendas.Dominio.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 public class ItemEstoque {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     private long codigoProduto;
@@ -17,7 +12,8 @@ public class ItemEstoque {
     private int quantMin;
     private int quantAtual;
 
-    public ItemEstoque(long codProd, int qntMax, int qntMin, int qntAtual){
+    public ItemEstoque(int id, long codProd, int qntMax, int qntMin, int qntAtual){
+        this.id = id;
         codigoProduto = codProd;
         quantMax = qntMax;
         quantMin = qntMin;

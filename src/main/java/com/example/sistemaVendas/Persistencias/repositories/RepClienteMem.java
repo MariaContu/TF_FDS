@@ -117,5 +117,15 @@ public class RepClienteMem implements IRepCliente{
         }
         cliente.setComprasUltimosSeisMeses(count);
     }
+
+    @Override
+    public Cliente findById(long id) {
+        for (Cliente cli : clis) {
+            if(cli.getId() == id){
+                return cli;
+            }
+        }
+        return null;
+    }
     
 }

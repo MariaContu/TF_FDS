@@ -130,7 +130,8 @@ public class RepOrcamentosMem implements IRepOrcamentos{
     @Override
     public boolean verificaDisponibilidadeItens(List<ItemPedido> itensPedido) {
         for (ItemPedido item : itensPedido) {
-            if(item.getItemQuant() > repGalpao.obterItemEstoquePorId(item.getItemId()).getQuantAtual()){
+            if(repGalpao.obterItemEstoquePorIdProduto(item.getItemId()) == null || repGalpao.obterItemEstoquePorIdProduto(item.getItemId()).getQuantAtual() < item.getItemQuant() ||(repGalpao.obterItemEstoquePorIdProduto(item.getItemId()).getQuantAtual() - item.getItemQuant()) < repGalpao.obterItemEstoquePorIdProduto(item.getItemId()).getQuantMin()){
+                System.out.println("Não há estoque suficiente para o item com ID: " + item.getItemId());
                 return false;
             }
         }

@@ -15,8 +15,8 @@ public class RepGalpaoMem implements IRepGalpao{
 
     public RepGalpaoMem(){
         galpao = new LinkedList<>();
-        galpao.add(new ItemEstoque(10, 100, 10, 50));
-        galpao.add(new ItemEstoque(20, 100, 10, 50));
+        galpao.add(new ItemEstoque(10,10, 100, 10, 50));
+        galpao.add(new ItemEstoque(20,20, 100, 10, 50));
     }
 
     @Override
@@ -25,9 +25,9 @@ public class RepGalpaoMem implements IRepGalpao{
     }
 
     @Override
-    public ItemEstoque obterItemEstoquePorId(long itemId) {
+    public ItemEstoque obterItemEstoquePorIdProduto(long itemId) {
        for (ItemEstoque item : galpao) {
-            if(item.getId() == itemId){
+            if(item.getCodigoProduto() == itemId){
                 return item;
             }
        }
@@ -35,9 +35,9 @@ public class RepGalpaoMem implements IRepGalpao{
     }
 
     @Override
-    public void atualizarItemEstoque(long idItem, int qntItem) {
+    public void atualizarItemEstoque(long idItemEstoque, int qntItem) {
         for (ItemEstoque item : galpao) {
-            if(item.getId() == idItem){
+            if(item.getCodigoProduto() == idItemEstoque){
                 item.setQuantAtual(qntItem);
             }
         }
@@ -46,7 +46,7 @@ public class RepGalpaoMem implements IRepGalpao{
     @Override
     public void removerItemEstoquePorQntd(long idItem, int qntItem) {
         for (ItemEstoque item : galpao) {
-            if(item.getId() == idItem){
+            if(item.getCodigoProduto() == idItem){
                 if(item.getQuantAtual()-qntItem <= item.getQuantMin()){
                     atualizarItemEstoque(idItem, item.getQuantMin());
                 }else{

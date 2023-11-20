@@ -1,16 +1,11 @@
 package com.example.sistemaVendas.Dominio.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import java.util.Date;
 
 @Entity
 public class Orcamento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private Date data;
@@ -27,13 +22,13 @@ public class Orcamento {
     private boolean efetivado = false;
     private boolean valido = false;
 
-    public Orcamento(long id, Date data, String nomeCliente, Pedido pedido, double custoPedido, double valorFinal)  {
+    public Orcamento(){    }
+
+    public Orcamento(long id, Date data, String nomeCliente, Pedido pedido)  {
         this.id=id;
         this.data=data;
         this.nomeCliente=nomeCliente;
         this.pedido=pedido;
-        this.custoPedido=custoPedido;
-        this.valorFinal=valorFinal;
     }
 
     public long getId() {

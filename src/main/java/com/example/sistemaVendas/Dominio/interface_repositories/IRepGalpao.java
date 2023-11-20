@@ -7,7 +7,7 @@ import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 public interface IRepGalpao {
 
     List<ItemEstoque> listarItensEstoqueNoGalpao();
-    ItemEstoque obterItemEstoquePorId(long itemId);
+    ItemEstoque obterItemEstoquePorIdProduto(long itemId);
     void atualizarItemEstoque(long idItem, int qntItem);
     void removerItemEstoquePorQntd(long itemId, int qntItem);
     
