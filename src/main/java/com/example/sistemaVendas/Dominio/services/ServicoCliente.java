@@ -4,10 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 import com.example.sistemaVendas.Dominio.model.Cliente;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
-import com.example.sistemaVendas.Dominio.model.Pedido;
-import com.example.sistemaVendas.Dominio.repositories.IRepCliente;
 
 @Service
 public class ServicoCliente {
@@ -20,6 +19,10 @@ public class ServicoCliente {
 
     public Cliente findClienteByName(String name) {
         return repCliente.findByName(name);
+    }
+
+    public Cliente findClienteById(long id) {
+        return repCliente.findById(id);
     }
 
     public List<Cliente> findAllClientes() {

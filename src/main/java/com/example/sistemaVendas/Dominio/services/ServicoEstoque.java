@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.sistemaVendas.Dominio.model.Produto;
-import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
 import com.example.sistemaVendas.Dominio.repositories.IRepItemEstoque;
 import com.example.sistemaVendas.Dominio.repositories.IRepProdutos;
+import com.example.sistemaVendas.Dominio.repositories.IRepGalpao;
 import com.example.sistemaVendas.Dominio.model.ItemEstoque;
 
 @Service
@@ -43,9 +43,6 @@ public class ServicoEstoque {
         repItemEstoque.addItemEstoque(itemEstoque);
     }
 
-    public void atualizarQuantidadeItemEstoque(ItemEstoque itemEstoque, int quantDesejada) {
-        repItemEstoque.retiraQuantItem(itemEstoque,quantDesejada);
-    }
 
     public List<ItemEstoque> listAllProdutosInGalpao()  {
         return repGalpao.listAllProdutos();

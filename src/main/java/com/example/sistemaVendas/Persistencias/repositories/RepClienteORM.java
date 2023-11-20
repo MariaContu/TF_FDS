@@ -17,7 +17,7 @@ public class RepClienteORM implements IRepCliente{
     public RepClienteORM()  {
         clientes = new LinkedList<>();
         clientes.add(new Cliente(1,"Ana", 55000, 12));
-        clientes.add(new Cliente(2,"Joaquim", 0, 0));
+        clientes.add(new Cliente(2,"Joaquim", 11000, 8));
         clientes.add(new Cliente(3,"Fernanda", 0, 0));
         clientes.add(new Cliente(4,"Augusto", 0, 0));
         clientes.add(new Cliente(5,"Joao", 0, 0));
@@ -122,5 +122,15 @@ public class RepClienteORM implements IRepCliente{
             }
         }
         cliente.setComprasUltimosSeisMeses(count);
+    }
+
+    @Override
+    public Cliente findById(long id) {
+        for (Cliente cliente : clientes) {
+            if (id==cliente.getId()) {
+                return cliente;
+            }
+        }
+        return null;
     }
 }

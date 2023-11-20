@@ -8,6 +8,7 @@ import com.example.sistemaVendas.Dominio.model.Orcamento;
 public interface IRepCliente {
 
     Cliente findByName(String name);
+    Cliente findById(long id);
     List<Cliente> allClientes();
 
     void calculaValorMedio(Cliente cliente);
@@ -16,7 +17,8 @@ public interface IRepCliente {
     double descontoDeCliente(Cliente cliente);
 
     void addPedido(Cliente cliente, Orcamento orcamento);
-    void atualizaComprasUltimosMeses(Cliente cliente);
+
     void atualizaValorMedio(Cliente cliente);
+    void atualizaComprasUltimosMeses(Cliente cliente);
 
 }
