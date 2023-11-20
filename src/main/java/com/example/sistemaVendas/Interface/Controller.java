@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.sistemaVendas.Aplicacao.EfetivarOrcamento;
+import com.example.sistemaVendas.Aplicacao.GerarRelatorio;
 import com.example.sistemaVendas.Aplicacao.ProdutosDisponiveis;
 import com.example.sistemaVendas.Aplicacao.SolicitarOrcamento;
+import com.example.sistemaVendas.Aplicacao.model.Relatorio;
 import com.example.sistemaVendas.Dominio.model.Orcamento;
 import com.example.sistemaVendas.Dominio.model.Produto;
 
@@ -27,12 +29,9 @@ public class Controller {
     private SolicitarOrcamento solicitaOrcamento;
     @Autowired
     private EfetivarOrcamento efetivaOrcamento;
-
-    @GetMapping("")
-    @CrossOrigin("*")
-    public String instrucoes() {
-        return "---------------------------------------------------\n Para produtos disponíveis: /produtosDisponiveis \n Para solicitar orçamento de uma determinada lista de itens: /solicitaOrcamento/lista/{[]}";
-  }
+    @Autowired
+    private GerarRelatorio geraRelatorio;
+    
 
     @GetMapping("produtosDisponiveis")
     @CrossOrigin("*")
@@ -57,7 +56,6 @@ public class Controller {
     @PutMapping("efetivarOrcamento/id={id}")
     @CrossOrigin("*")
     public ResponseEntity<Orcamento> efetivarOrcamento(@PathVariable("id") long idOrcamento) {
-
         Date dataAtual = new Date();
         Orcamento orcamento = efetivaOrcamento.efetivarOrcamento(idOrcamento, dataAtual);
         if (orcamento.getEfetivado()) {
@@ -69,5 +67,28 @@ public class Controller {
         }
     }
 
+    @GetMapping("todosRelatorios")
+    @CrossOrigin("*")
+    public Relatorio todosRelatorios()    {
+        return geraRelatorio.gerarTodosRelatorios();
+    }
+
+    @GetMapping("desempenhoCliente")
+    @CrossOrigin("*")
+    public Relatorio desempenhoCliente()    {
+        return geraRelatorio.relatorioDesempenhoDoCliente();
+    }
+
+    @GetMapping("vendasPorProduto")
+    @CrossOrigin("*")
+    public Relatorio vendasPorProduto()    {
+        return geraRelatorio.relatorioVendasPorProduto();
+    }
     
+    @GetMapping("custoMedioOrcamentos")
+    @CrossOrigin("*")
+    public Relatorio custoMedioOrcamentos()    {
+        return geraRelatorio.relatorioCustoMedioOrcamentos();
+    }
+
 }
