@@ -22,6 +22,9 @@ public class GerarRelatorio {
         relatorio.adicionarConteudo("\nRelatório de Vendas por Produto:\n");
         relatorio.adicionarConteudo(servicoRelatorio.analiseVendasPorProduto().getConteudo());
 
+        relatorio.adicionarConteudo("\nRelatório do Custo Medio dos Orçamantos");
+        relatorio.adicionarConteudo(servicoRelatorio.calculaCustoMedioOrcamentos());
+
         return relatorio;
     }
 }
