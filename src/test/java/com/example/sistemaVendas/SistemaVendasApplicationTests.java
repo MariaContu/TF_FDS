@@ -77,6 +77,11 @@ class SistemaVendasApplicationTests {
 		listaPedido.add(new ItemPedido(1, 3));
 		listaPedido.add(new ItemPedido(2, 2));
 		Pedido novoPedido = new Pedido(1, 1, listaPedido);
+
+		servicoCliente.findClienteById(1).setComprasUltimosSeisMeses(12);
+		servicoCliente.findClienteById(1).setValorMedio(55000);
+
+
 		Orcamento novOrcamento = new Orcamento(1,new Date(),"Ana",novoPedido);
 		servicoVendas.calculaCustoPedido(novOrcamento);
 		servicoVendas.calculaValorFinal(novOrcamento);
