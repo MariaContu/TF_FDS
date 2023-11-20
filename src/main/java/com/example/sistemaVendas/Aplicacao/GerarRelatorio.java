@@ -11,50 +11,20 @@ public class GerarRelatorio {
     @Autowired
     private ServicoRelatorio servicoRelatorio;
 
-    public Relatorio gerarTodosRelatorios() {
+    public Relatorio gerarRelatorio() {
         Relatorio relatorio = new Relatorio();
 
         // Adicione o relatório de desempenho do cliente
-        relatorio.adicionarConteudo("Relatório de Desempenho do Cliente:\n");
-        relatorio.adicionarConteudo(servicoRelatorio.analiseDesempenhoCliente().getConteudo());
+        relatorio.adicionarSecao("Relatório de Desempenho do Cliente:");
+        relatorio.getSecoes().addAll(servicoRelatorio.analiseDesempenhoCliente().getSecoes());
 
         // Adicione o relatório de vendas por produto
-        relatorio.adicionarConteudo("\nRelatório de Vendas por Produto:\n");
-        relatorio.adicionarConteudo(servicoRelatorio.analiseVendasPorProduto().getConteudo());
+        relatorio.adicionarSecao("\nRelatório de Vendas por Produto:");
+        relatorio.getSecoes().addAll(servicoRelatorio.analiseVendasPorProduto().getSecoes());
 
-        relatorio.adicionarConteudo("\nRelatório do Custo Medio dos Orçamantos");
+        relatorio.adicionarSecao("\nRelatório do Custo Médio dos Orçamentos");
         relatorio.adicionarConteudo(servicoRelatorio.calculaCustoMedioOrcamentos());
 
         return relatorio;
     }
-
-    public Relatorio relatorioDesempenhoDoCliente() {
-        Relatorio relatorio = new Relatorio();
-
-        // Adicione o relatório de desempenho do cliente
-        relatorio.adicionarConteudo("Relatório de Desempenho do Cliente:\n");
-        relatorio.adicionarConteudo(servicoRelatorio.analiseDesempenhoCliente().getConteudo());
-
-        return relatorio;
-    }
-
-    public Relatorio relatorioVendasPorProduto() {
-        Relatorio relatorio = new Relatorio();
-
-        // Adicione o relatório de vendas por produto
-        relatorio.adicionarConteudo("\nRelatório de Vendas por Produto:\n");
-        relatorio.adicionarConteudo(servicoRelatorio.analiseVendasPorProduto().getConteudo());
-
-        return relatorio;
-    }
-
-    public Relatorio relatorioCustoMedioOrcamentos() {
-        Relatorio relatorio = new Relatorio();
-
-        relatorio.adicionarConteudo("\nRelatório do Custo Medio dos Orçamantos");
-        relatorio.adicionarConteudo(servicoRelatorio.calculaCustoMedioOrcamentos());
-
-        return relatorio;
-    }
-
 }

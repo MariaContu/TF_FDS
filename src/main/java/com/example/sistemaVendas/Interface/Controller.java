@@ -70,25 +70,7 @@ public class Controller {
     @GetMapping("todosRelatorios")
     @CrossOrigin("*")
     public Relatorio todosRelatorios()    {
-        return geraRelatorio.gerarTodosRelatorios();
-    }
-
-    @GetMapping("desempenhoCliente")
-    @CrossOrigin("*")
-    public Relatorio desempenhoCliente()    {
-        return geraRelatorio.relatorioDesempenhoDoCliente();
-    }
-
-    @GetMapping("vendasPorProduto")
-    @CrossOrigin("*")
-    public Relatorio vendasPorProduto()    {
-        return geraRelatorio.relatorioVendasPorProduto();
-    }
-    
-    @GetMapping("custoMedioOrcamentos")
-    @CrossOrigin("*")
-    public Relatorio custoMedioOrcamentos()    {
-        return geraRelatorio.relatorioCustoMedioOrcamentos();
+        return geraRelatorio.gerarRelatorio();
     }
 
 }
